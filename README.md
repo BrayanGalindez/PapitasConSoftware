@@ -19,11 +19,11 @@
 
 	`pipenv shell`
 	
-5 Instalar dependencias env.
+5. Instalar dependencias env.
 
 	`pipenv install`
 	
-6 ejecutar uvicorn
+6. ejecutar uvicorn
 
 	`uvicorn app:app --reload`
 
