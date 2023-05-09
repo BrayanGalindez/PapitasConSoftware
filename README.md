@@ -16,10 +16,14 @@
 	
 4. activar env.
 
+	`pipenv shell`
+	
+5 Instalar dependencias env.
+
 	`pipenv install`
 	
-5. ejecutar uvicorn
+6 ejecutar uvicorn
 
 	`uvicorn app:app --reload`
 
-Listo luego de seguir estos pasos  tener funcionando de forma correcta el proyecto de FastApi.
+Listo, luego de seguir estos pasos, deberias tener funcionando de forma correcta el proyecto de FastApi.
