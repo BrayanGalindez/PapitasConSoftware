@@ -10,6 +10,7 @@
 2. Pasarse a rama develop
 
 	`git checkout develop_db`
+	
 3.  Instalar pipenv.
 
 	`pip install pipenv`
