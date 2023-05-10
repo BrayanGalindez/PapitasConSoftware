@@ -25,7 +25,7 @@ const SignUp = () => {
         </div>
         <button type="submit">Crear cuenta</button>
       </form>
-      <p>¿Ya tienes una cuenta? <Link to="/signin">Inicia sesión aquí</Link></p>
+      <p>¿Ya tienes una cuenta? <Link to="/iniciar">Inicia sesión aquí</Link></p>
     </div>
   );
 };
