@@ -17,7 +17,7 @@ const SignIn = () => {
         </div>
         <button type="submit">Iniciar sesión</button>
       </form>
-      <p>¿No tienes una cuenta? <Link to="/signup">Regístrate aquí</Link></p>
+      <p>¿No tienes una cuenta? <Link to="/registrar">Regístrate aquí</Link></p>
     </div>
   );
 };
