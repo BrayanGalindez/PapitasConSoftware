@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from schemas.userSchema import userEntity, usersEntity
 from schemas.propietarioSchema import propietarioEntity, propietariosEntity
-from config.db import coleccionUser, coleccionProp
+from config.db import coleccionUser, coleccionProp, coleccionPlatos
 from models.userModel import User
 from models.propietarioModel import Propietario
 from bcrypt import checkpw, hashpw, gensalt
@@ -106,8 +106,8 @@ def deletePropietario(id: int):
 #rutas platos
 @router.get('/platos')
 async def findAllPlatos():
-    propietarios = propietariosEntity(coleccionProp.find())
-    return f'status: ok, datos: {propietarios}'
+    platos = propietariosEntity(coleccionPlatos.find())
+    return f'status: ok, datos: {platos}'
 
 
 @router.get('/platos/{id}')
