@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from schemas.userSchema import userEntity, usersEntity
 from schemas.propietarioSchema import propietarioEntity, propietariosEntity
-from config.db import coleccionUser, coleccionProp, coleccionPlatos
+from config.db import coleccionUser, coleccionProp, coleccionPlato
 from models.userModel import User
 from models.propietarioModel import Propietario
 from bcrypt import checkpw, hashpw, gensalt

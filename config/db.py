@@ -7,5 +7,5 @@ db = client.ClusterPapitas
 
 coleccionUser= db['users']
 coleccionProp = db['propietarios']
-coleccionPlatos = db['platos']
+coleccionPlato = db['platos']
 
