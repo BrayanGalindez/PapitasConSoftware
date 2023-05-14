@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Response
 from schemas.userSchema import userEntity, usersEntity
 from schemas.propietarioSchema import propietarioEntity, propietariosEntity
-from config.db import coleccionUser, coleccionProp
+from schemas.platoSchema import platoEntity, platosEntity
+from config.db import coleccionUser, coleccionProp, coleccionPlato
 from models.userModel import User
 from models.propietarioModel import Propietario
+from models.platoModel import Plato
 from bcrypt import checkpw, hashpw, gensalt
 from starlette.status import HTTP_204_NO_CONTENT, HTTP_201_CREATED, HTTP_500_INTERNAL_SERVER_ERROR
 
@@ -141,3 +143,13 @@ def deletePropietario(id: int):
         
     except:
         return f'Propietario no encontrado, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
+    
+    
+#MIS RUTAS
+@router.post('/crearPlato')
+def crearPlato(plato: Plato):
+    platoNuevo = dict(plato)
+    id = coleccionPlato.insert_one(platoNuevo).inserted_id
+
+    plato = coleccionPlato.find_one({"id": id})
+    return platoEntity(plato)
