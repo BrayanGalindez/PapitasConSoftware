@@ -1,10 +1,8 @@
 def platoEntity(item) -> dict:
     return{
-        "id":str(item['_id']),
+        "restaurante":item['restaurante'],
         "nombre":item['nombre'],
-        "correo":item['correo'],
-        "passw":item['passw'],
-        "direccion":item['direccion']
+        "precio":item['precio']
     }
 
 def platosEntity(entity) -> list:

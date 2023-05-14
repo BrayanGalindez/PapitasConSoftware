@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel, EmailStr, validate_email
+from pydantic import BaseModel, EmailStr
 
 class User(BaseModel):
     id: Optional[int]
@@ -11,3 +11,4 @@ class User(BaseModel):
     comentarios: int
     resAnadidos: int
     telefono: int
+    tipo: str
