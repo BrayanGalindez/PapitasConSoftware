@@ -14,6 +14,9 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import RecipeReviewCard from './RestaurantCard';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import { Tooltip } from '@mui/material';
 
 const HomePage = () => {
     return (
@@ -39,14 +42,14 @@ const HomePage = () => {
           
           <div className='botones'>
             < Stack spacing={2} direction="row">
-              <Link to="/iniciar"><Button variant="outlined">Iniciar sesión</Button></Link>
-              <Link to="/registrar"><Button variant="contained">Registrarse</Button></Link>
+              <Link to="/iniciar"><Tooltip title="Iniciar sesión"><Button variant="outlined">Iniciar sesión</Button></Tooltip></Link>
+              <Link to="/registrar"><Tooltip title="Registrarse"><Button variant="contained">Registrarse</Button></Tooltip></Link>
             </Stack>
             </div>
         </nav>
         <div className='row'>
           <div className='column filters'>
-            <FormControl component="fieldset">
+            <FormControl className='lista-ordenar' component="fieldset">
               <FormLabel component="legend">Ordenar por</FormLabel>
               <FormGroup aria-label="position" column>
                 
@@ -91,13 +94,41 @@ const HomePage = () => {
           </div>
           <div className='column restaurantes'>
             <h1 className='search-propmt'>Restaurantes destacados</h1>
-            <Grid container className='cards-restaurantes' spacing={{ xs: -2, md: -3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-              {Array.from(Array(6)).map((_, index) => (
-                <Grid RecipeReviewCard xs={2} sm={4} md={4} key={index}>
-                  <RecipeReviewCard>xs=2</RecipeReviewCard>
+            <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={ {xs:-2, md:-3}}>
+                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
+                  <RecipeReviewCard style={{ marginBottom: '2rem' }}></RecipeReviewCard>
                 </Grid>
-              ))}
+                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
+                  <RecipeReviewCard></RecipeReviewCard>
+                </Grid>
+                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
+                  <RecipeReviewCard></RecipeReviewCard>
+                </Grid>
+                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
+                  <RecipeReviewCard></RecipeReviewCard>
+                </Grid>
+                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
+                  <RecipeReviewCard></RecipeReviewCard>
+                </Grid>
+                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
+                  <RecipeReviewCard></RecipeReviewCard>
+                </Grid>
             </Grid>
+            <Tooltip title="Crear restaurante">
+              <Fab
+                sx={{
+                  position: "fixed",
+                  bottom: (theme) => theme.spacing(2),
+                  right: (theme) => theme.spacing(2)
+                }}
+                color="primary"
+              >
+                <AddIcon />
+                
+
+                
+              </Fab>
+            </Tooltip>
           </div>
 
         </div>

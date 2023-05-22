@@ -62,21 +62,14 @@
 }
 
 .restaurantes{
-    background-color: #DCE0E8;
-    width: 80%;
-    height: auto;
-    border-radius: 6px;
-
-}
-
-.restaurantes{
     margin-top: 0;
-    padding-left: 4rem;
+    box-sizing: border-box;
+    padding-left: 4rem; 
     background-color: #DCE0E8;
     width: 80%;
     height: auto;
     float: right;
-    border-radius: 6px;
+    border-radius: 6px 0px 0px 6px;
 
 }
 
@@ -99,5 +92,5 @@ row:after {
 
 .restaurantes h1{
     color: #9CA0B0;
+    padding-bottom: 3rem;
 }
-
