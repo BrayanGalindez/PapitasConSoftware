@@ -1,7 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect  } from "react";
+import L from "leaflet";
 import '../styles/RestaurantCard.css';
+
 function RestaurantCard(props) {
   const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    // Initialize map when component mounts
+    const map = L.map("map-container").setView([props.lat, props.lng], 13);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "Map data &copy; OpenStreetMap contributors",
+      maxZoom: 18,
+    }).addTo(map);
+
+    L.marker([props.lat, props.lng]).addTo(map);
+
+    // Clean up map when component unmounts
+    return () => {
+      map.remove();
+    };
+  }, [props.lat, props.lng]);
 
   function handleFavoriteClick() {
     setIsFavorite(!isFavorite);
@@ -24,6 +42,7 @@ function RestaurantCard(props) {
       <h2>{props.name}</h2>
       <p>{props.address}</p>
       {/* map section goes here */}
+      <div id="map-container" className="map-container" /> {/* Map container */}
       <div className="price">
         {props.price === "very expensive" && (
           <img src="very-expensive-icon.png" alt="very expensive" />
