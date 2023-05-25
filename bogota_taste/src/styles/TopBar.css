@@ -1,0 +1,48 @@
+.topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1%;
+    background-color: #F9E2AF;
+    flex-direction: row;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: flex-start;
+}
+
+.logo-img{
+    width: 100px;
+    object-fit: cover;  
+}
+
+.logo-text {
+    font-size: 26px;
+    align-self: center;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+}
+
+.searchbar{
+    width: 50%;
+    margin-right: 4rem;
+    position: relative;
+    align-items: 'center';
+    justify-content: 'center';
+
+}
+
+.searchbar input{
+    margin-top: 1rem;
+    align-self: center;
+
+}
+
+.botones {
+    margin-top: 1em;
+    float: right;
+
+}

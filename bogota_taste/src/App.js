@@ -4,11 +4,14 @@ import SignIn from './components/SignIn';
 import RestaurantCard from './components/RestaurantCard';
 import RestaurantQueryView from './components/RestaurantQueryView';
 import { Route, Routes } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
+
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" >
+          <Route path="inicio" element={<HomePage/>}/>
           <Route path="iniciar" element={<SignIn/>}/>
           <Route path="registrar" element={<SignUp/>}/>
           <Route path="lista" element={<RestaurantCard/>}/>
