@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
 import RecipeReviewCard from './RestaurantCard';
-import TopBar from './TopBar';
+import TopBar from '../TopBar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
@@ -22,7 +22,7 @@ const HomePage = () => {
       <div className='home-page'>
         <TopBar></TopBar>
         <div className='row'>
-          <div className='column filters'>
+          <div className='filters'>
             <FormControl className='lista-ordenar' component="fieldset">
               <FormLabel component="legend">Ordenar por:</FormLabel>
               <FormGroup aria-label="position" column>
@@ -61,12 +61,12 @@ const HomePage = () => {
             </div>
 
             <div className='rating'>
-              <Typography> Calificación</Typography>
-              <Rating name="no-value" defaultValue={null} precision={0.5} size="large" />
+              <Typography component="legend"> Calificación</Typography>
+              <Rating defaultValue={null} precision={0.5} size="large" />
             </div>
             
           </div>
-          <div className='column restaurantes'>
+          <div className='restaurantes'>
             <h1 className='search-propmt'>Restaurantes destacados</h1>
             <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={ {xs:-2, md:-3}}>
                 <Grid RecipeReviewCard xs={2} sm={4} md={4}>
@@ -90,8 +90,9 @@ const HomePage = () => {
             </Grid>
             <Tooltip title="Crear restaurante">
               <Fab
+                className='boton-crear-restaurante'
                 sx={{
-                  position: "fixed",
+                  position:'absolute',
                   bottom: (theme) => theme.spacing(2),
                   right: (theme) => theme.spacing(2)
                 }}
@@ -104,7 +105,9 @@ const HomePage = () => {
               </Fab>
             </Tooltip>
           </div>
-
+          <div className='footer'>
+            <h1> FOOTER</h1>
+          </div>
         </div>
       </div>
         

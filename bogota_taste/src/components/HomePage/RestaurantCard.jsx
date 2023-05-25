@@ -35,7 +35,7 @@ export default function RecipeReviewCard() {
         <ul>
           <li>Dirección:</li>
           <li>Distancia:</li>
-          <li>Rating:</li>
+          <li>Calificación:</li>
         </ul>
       </CardContent>
       <CardActions disableSpacing>

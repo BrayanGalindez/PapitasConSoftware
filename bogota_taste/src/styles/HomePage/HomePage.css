@@ -1,84 +1,35 @@
-.topbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1%;
-    background-color: #F9E2AF;
-    flex-direction: row;
-    
-}
-
-.logo {
-    display: flex;
-    align-items: flex-start;
-}
-
-.logo-img{
-    width: 100px;
-    object-fit: cover;  
-}
-
-.logo-text {
-    font-size: 26px;
-    align-self: center;
-    font-style: normal;
-    text-align: center;
-    font-weight: 700;
-}
-
-.searchbar{
-    width: 50%;
-    margin-right: 4rem;
-    position: relative;
-    align-items: 'center';
-    justify-content: 'center';
-
-}
-
-.searchbar input{
-    margin-top: 1rem;
-    align-self: center;
-
-}
-
-.botones {
-    margin-top: 1em;
-    float: right;
-
-}
-
 .row{
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
 }
-
-.column {
-    float: left;
-}
-
 
 .filters{
     padding-top: 4rem;   
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width:20%;
-    height:auto;
+    grid-column: 1;
+    margin-left: 2rem;
 }
 
 .restaurantes{
+
     margin-top: 0;
-    box-sizing: border-box;
+    grid-column: 2;
     padding-left: 4rem; 
     background-color: #DCE0E8;
-    width: 80%;
-    height: auto;
-    float: right;
     border-radius: 6px 0px 0px 6px;
+    position: relative;
 
+}
+
+.footer{
+    grid-column: 1 / span 2;    
+    text-align: center;
 }
 
 .filters .rating{
     margin-top: 4rem;
+    align-items: center;
 }
 
 .filters .sliders{
@@ -86,15 +37,7 @@
     justify-content: space-between;
 }
 
-
-
-row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 .restaurantes h1{
     color: #9CA0B0;
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
 }

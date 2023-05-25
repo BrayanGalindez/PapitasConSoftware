@@ -3,6 +3,7 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
+
 function App() {
   return (
     <div className="App">
