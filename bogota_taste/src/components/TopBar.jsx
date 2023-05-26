@@ -119,7 +119,7 @@ function TopBar() {
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
                           >
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <Link className='link-micuenta' to='/micuenta'><MenuItem onClick={handleClose}>My account</MenuItem></Link>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                           </MenuList>
                         </ClickAwayListener>

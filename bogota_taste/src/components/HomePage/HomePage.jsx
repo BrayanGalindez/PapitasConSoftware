@@ -15,6 +15,7 @@ import TopBar from '../TopBar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
+import Footer from '../Footer';
 
 
 const HomePage = () => {
@@ -92,24 +93,21 @@ const HomePage = () => {
               <Fab
                 className='boton-crear-restaurante'
                 sx={{
-                  position:'absolute',
+                  position:'sticky',
                   bottom: (theme) => theme.spacing(2),
-                  right: (theme) => theme.spacing(2)
+                  right: (theme) => theme.spacing(2),
+                  marginBottom: (theme) => theme.spacing(2)
                 }}
                 color="primary"
               >
                 <AddIcon />
-                
-
-                
               </Fab>
             </Tooltip>
           </div>
-          <div className='footer'>
-            <h1> FOOTER</h1>
-          </div>
         </div>
+        <Footer></Footer>
       </div>
+      
         
     );
   };
