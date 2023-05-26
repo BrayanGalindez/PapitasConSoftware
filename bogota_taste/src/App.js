@@ -1,6 +1,8 @@
 import React from 'react';
 import SignUp from './components/SignUp'; 
 import SignIn from './components/SignIn';
+import RestaurantCard from './components/RestaurantCard';
+import RestaurantQueryView from './components/RestaurantQueryView';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import MiCuenta from './components/MiCuenta';
@@ -14,7 +16,8 @@ function App() {
           <Route path="iniciar" element={<SignIn/>}/>
           <Route path="registrar" element={<SignUp/>}/>
           <Route path="micuenta" element={<MiCuenta/>}/>
-
+          <Route path="lista" element={<RestaurantCard/>}/>
+          <Route path="consultar" element={<RestaurantQueryView/>}/>
         </Route>
       </Routes>
     </div>
