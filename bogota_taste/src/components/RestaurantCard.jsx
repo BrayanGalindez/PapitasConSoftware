@@ -4,22 +4,22 @@ import '../styles/RestaurantCard.css';
 
 function RestaurantCard(props) {
   const [isFavorite, setIsFavorite] = useState(false);
-  useEffect(() => {
-    // Initialize map when component mounts
-    const map = L.map("map-container").setView([props.lat, props.lng], 13);
+  // useEffect(() => {
+  //   // Initialize map when component mounts
+  //   const map = L.map("map-container").setView([props.lat, props.lng], 13);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "Map data &copy; OpenStreetMap contributors",
-      maxZoom: 18,
-    }).addTo(map);
+  //   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  //     attribution: "Map data &copy; OpenStreetMap contributors",
+  //     maxZoom: 18,
+  //   }).addTo(map);
 
-    L.marker([props.lat, props.lng]).addTo(map);
+  //   L.marker([props.lat, props.lng]).addTo(map);
 
-    // Clean up map when component unmounts
-    return () => {
-      map.remove();
-    };
-  }, [props.lat, props.lng]);
+  //   // Clean up map when component unmounts
+  //   return () => {
+  //     map.remove();
+  //   };
+  // }, [props.lat, props.lng]);
 
   function handleFavoriteClick() {
     setIsFavorite(!isFavorite);
