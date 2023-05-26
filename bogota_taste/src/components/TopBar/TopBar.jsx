@@ -10,8 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchComponent from '../TopBar/SearchComponent';
 
-import '../styles/TopBar.css';
+import '../../styles/TopBar/TopBar.css';
 
 function TopBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -77,7 +78,7 @@ function TopBar() {
             </div>
 
             <div className='searchbar'>
-                <input type='search' placeholder='Busca restaurante o plato'/>
+                <SearchComponent></SearchComponent>
             </div>
 
             <div className='botones'>
