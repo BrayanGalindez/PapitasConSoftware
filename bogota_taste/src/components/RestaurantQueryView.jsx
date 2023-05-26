@@ -1,8 +1,14 @@
+
 import React, { useState } from 'react';
-import '../styles/RestaurantQueryView.css'; // Import CSS file for styling
+import '../styles/RestaurantQueryView.css';
 
 const RestaurantQueryView = ({ restaurant }) => {
   const [showReviews, setShowReviews] = useState(false);
+  if (!restaurant || typeof restaurant.name === 'undefined') {
+    // Manejar el caso cuando restaurant es undefined o no tiene la propiedad 'name'
+    return <div>No se encontró el restaurante</div>;
+  }
+  
 
   const toggleReviews = () => {
     setShowReviews(!showReviews);
