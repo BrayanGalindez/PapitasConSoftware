@@ -10,11 +10,36 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SearchComponent from '../TopBar/SearchComponent';
+import axios from 'axios';
+import SearchIcon from '@mui/icons-material/Search';
 
-import '../../styles/TopBar/TopBar.css';
+import '../styles/TopBar.css';
 
-function TopBar() {
+function TopBar({ onSearch }, { onDataFetched }) {
+
+  const [query, setQuery] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleSearch = async () => {
+    try {
+      onSearch(query);
+      const response = await axios.get(`/api/search?query=${query}`);
+      onDataFetched(response.data); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleLogin = () => {
@@ -24,9 +49,6 @@ function TopBar() {
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
-
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -78,7 +100,19 @@ function TopBar() {
             </div>
 
             <div className='searchbar'>
-                <SearchComponent></SearchComponent>
+              <div className='search-container'>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  className="search-input"
+                  placeholder="Busca restaurante o plato..."
+                />
+                <button onClick={handleSearch} className="search-icon">
+                  <SearchIcon sx={2}></SearchIcon>
+                </button>
+              </div>
             </div>
 
             <div className='botones'>
@@ -149,7 +183,19 @@ function TopBar() {
             </div>
 
             <div className='searchbar'>
-                <input type='search' placeholder='Busca restaurante o plato'/>
+              <div className='search-container'>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  className="search-input"
+                  placeholder="Busca restaurante o plato..."
+                />
+                <button onClick={handleSearch} className="search-icon">
+                  <SearchIcon sx={2}></SearchIcon>
+                </button>
+              </div>
             </div>
 
             <div className='botones'>

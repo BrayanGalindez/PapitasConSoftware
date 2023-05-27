@@ -9,13 +9,13 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import Grid from '@mui/material/Grid';
 import RestaurantCardList from './RestaurantCardList';
-import TopBar from '../TopBar/TopBar';
+import TopBar from '../TopBar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
 import Footer from '../Footer';
+import sampleData from './data';
 import CreateRestaurant from '../CreateRestaurant.jsx'; // Importa el componente del formulario CrearRestaurante
 
 const HomePage = () => {
@@ -28,9 +28,19 @@ const HomePage = () => {
   const handleCloseCreateRestaurant = () => {
     setShowCreateRestaurant(false);
   };
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const [data, setData] = useState([]);
+
+  const handleDataFetched = (fetchedData) => {
+    setData(fetchedData);
+  }
     return (
       <div className='home-page'>
-        <TopBar></TopBar>
+        <TopBar onSearch={handleSearch} onDataFetched={handleDataFetched}></TopBar>
         <div className='row'>
           <div className='filters'>
             <FormControl className='lista-ordenar' component="fieldset">
@@ -77,8 +87,8 @@ const HomePage = () => {
             
           </div>
           <div className='restaurantes'>
-            <h1 className='search-propmt'>Restaurantes destacados</h1>
-            <RestaurantCardList className="lista-restaurantes"></RestaurantCardList>
+            <h1 className='search-propmt'>{searchQuery ? `Resultados de la busqueda: ${searchQuery}` : 'Restaurantes destacados'}</h1>
+            <RestaurantCardList className="lista-restaurantes" searchData={sampleData}></RestaurantCardList>
             <Tooltip title="Crear restaurante">
               <Fab
                 className='boton-crear-restaurante'
