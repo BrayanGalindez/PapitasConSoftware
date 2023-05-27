@@ -1,11 +1,13 @@
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import L from "leaflet";
 import '../styles/RestaurantCard.css';
 
 function RestaurantCard(props) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [restaurantData, setRestaurantData] = useState(null);
+
   // useEffect(() => {
-  //   // Initialize map when component mounts
   //   const map = L.map("map-container").setView([props.lat, props.lng], 13);
 
   //   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -15,11 +17,25 @@ function RestaurantCard(props) {
 
   //   L.marker([props.lat, props.lng]).addTo(map);
 
-  //   // Clean up map when component unmounts
+  //   fetchRestaurantData();
+
   //   return () => {
   //     map.remove();
   //   };
   // }, [props.lat, props.lng]);
+
+  async function fetchRestaurantData() {
+    try {
+      const response = await axios.get("/api/restaurant", {
+        params: {
+          restaurantId: props.id,
+        },
+      });
+      setRestaurantData(response.data);
+    } catch (error) {
+      console.error("Error fetching restaurant data:", error);
+    }
+  }
 
   function handleFavoriteClick() {
     setIsFavorite(!isFavorite);
