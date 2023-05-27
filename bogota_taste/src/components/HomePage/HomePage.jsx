@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
-import RecipeReviewCard from './RestaurantCard';
+import RestaurantCardList from './RestaurantCardList';
 import TopBar from '../TopBar/TopBar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -70,26 +70,7 @@ const HomePage = () => {
           </div>
           <div className='restaurantes'>
             <h1 className='search-propmt'>Restaurantes destacados</h1>
-            <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={ {xs:-2, md:-3}}>
-                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
-                  <RecipeReviewCard style={{ marginBottom: '2rem' }}></RecipeReviewCard>
-                </Grid>
-                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
-                  <RecipeReviewCard></RecipeReviewCard>
-                </Grid>
-                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
-                  <RecipeReviewCard></RecipeReviewCard>
-                </Grid>
-                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
-                  <RecipeReviewCard></RecipeReviewCard>
-                </Grid>
-                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
-                  <RecipeReviewCard></RecipeReviewCard>
-                </Grid>
-                <Grid RecipeReviewCard xs={2} sm={4} md={4}>
-                  <RecipeReviewCard></RecipeReviewCard>
-                </Grid>
-            </Grid>
+            <RestaurantCardList className="lista-restaurantes"></RestaurantCardList>
             <Tooltip title="Crear restaurante">
               <Fab
                 className='boton-crear-restaurante'
