@@ -13,14 +13,14 @@ import '../../styles/HomePage/HomePage.css';
 import { Tooltip } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
-export default function RestaurantCardList() {
-  const numCards = 5;
+export default function RestaurantCardList({ searchData }) {
+  const numCards = searchData.length;
   const cardsPerRow = numCards >= 3 ? 3 : numCards;
   
   return (
     <Grid container spacing={2} rowGap={2} justifyContent="center">
-      {(Array.from(Array(numCards))).map((_, index) => (
-        <Grid item xs={12/cardsPerRow} sm={4} md={4} key={index}>
+      {searchData.map((item) => (
+        <Grid item xs={12/cardsPerRow} sm={4} md={4} key={item.id}>
           <Card style={{ marginRight: '2rem' }}>
             <CardHeader
               avatar={
@@ -28,20 +28,20 @@ export default function RestaurantCardList() {
                   R
                 </Avatar>
               }
-              title="Restaurante"
-              subheader="September 14, 2016"
+              title={item.nombre}
+              subheader={item.creation_date}
             />
             <CardMedia
               component="img"
               height="150"
-              image="/static/images/cards/paella.jpg"
-              alt="Paella dish"
+              image={item.img_url}
+              alt={item.img_alt}
             />
             <CardContent>
               <ul>
-                <li>Dirección:</li>
-                <li>Distancia:</li>
-                <li>Calificación:</li>
+                <li>Dirección:{item.direccion}</li>
+                <li>Distancia:{item.distancia}</li>
+                <li>Calificación:{item.rating}</li>
               </ul>
             </CardContent>
             <CardActions disableSpacing>
