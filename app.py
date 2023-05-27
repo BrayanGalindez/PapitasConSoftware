@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from rutas.rutas import router
-from bcrypt import hashpw,gensalt,checkpw
+import rutas.users
+import rutas.propietarios
+
 
 
 
 app = FastAPI()
-app.include_router(router)
-
+app.include_router(rutas.users.router)
+app.include_router(rutas.propietarios.router)
 
