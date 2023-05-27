@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import '../../styles/HomePage/HomePage.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -16,10 +16,18 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
 import Footer from '../Footer';
-
-
+import CreateRestaurant from '../CreateRestaurant.jsx'; // Importa el componente del formulario CrearRestaurante
 
 const HomePage = () => {
+  const [showCreateRestaurant, setShowCreateRestaurant] = useState(false);
+
+  const handleOpenCreateRestaurant = () => {
+    setShowCreateRestaurant(true);
+  };
+
+  const handleCloseCreateRestaurant = () => {
+    setShowCreateRestaurant(false);
+  };
     return (
       <div className='home-page'>
         <TopBar></TopBar>
@@ -81,10 +89,16 @@ const HomePage = () => {
                   marginBottom: (theme) => theme.spacing(2)
                 }}
                 color="primary"
+                onClick={handleOpenCreateRestaurant}
+                // href="/crear"
+                // target="_blank"
+
               >
                 <AddIcon />
               </Fab>
+              
             </Tooltip>
+            <CreateRestaurant isOpen={showCreateRestaurant} onClose={handleCloseCreateRestaurant} />
           </div>
         </div>
         <Footer></Footer>
@@ -94,4 +108,4 @@ const HomePage = () => {
     );
   };
   
-  export default HomePage;
+export default HomePage;
