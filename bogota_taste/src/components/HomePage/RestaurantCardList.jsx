@@ -20,12 +20,12 @@ export default function RestaurantCardList({ searchData }) {
   return (
     <Grid container spacing={2} rowGap={2} justifyContent="center">
       {searchData.map((item) => (
-        <Grid item xs={12/cardsPerRow} sm={4} md={4} key={item.id}>
+        <Grid item xs={12/cardsPerRow} sm={4} md={4} key={item.nit}>
           <Card style={{ marginRight: '2rem' }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
+                  (({item.propietario}).substring(0,1)).toUpperCase()
                 </Avatar>
               }
               title={item.nombre}

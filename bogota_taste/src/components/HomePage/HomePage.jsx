@@ -88,7 +88,7 @@ const HomePage = () => {
           </div>
           <div className='restaurantes'>
             <h1 className='search-propmt'>{searchQuery ? `Resultados de la busqueda: ${searchQuery}` : 'Restaurantes destacados'}</h1>
-            <RestaurantCardList className="lista-restaurantes" searchData={sampleData}></RestaurantCardList>
+            <RestaurantCardList className="lista-restaurantes" searchData={data}></RestaurantCardList>
             <Tooltip title="Crear restaurante">
               <Fab
                 className='boton-crear-restaurante'
