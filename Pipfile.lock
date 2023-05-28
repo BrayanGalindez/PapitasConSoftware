@@ -1,7 +1,11 @@
 {
     "_meta": {
         "hash": {
+<<<<<<< HEAD
             "sha256": "52daf095762c61cb917b38106b08ad1e2866c7426f68fff42a81b362a90014c2"
+=======
+            "sha256": "64f00d26466136f8b61a8265422fccac1df9de166fc9561c9bc5fc02037d61aa"
+>>>>>>> origin/Daniel
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +20,7 @@
         ]
     },
     "default": {
+<<<<<<< HEAD
         "anyio": {
             "hashes": [
                 "sha256:25ea0d673ae30af41a0c442f81cf3b38c7e79fdc7b60335a4c14e05eb0947421",
@@ -24,6 +29,8 @@
             "markers": "python_full_version >= '3.6.2'",
             "version": "==3.6.2"
         },
+=======
+>>>>>>> origin/Daniel
         "bcrypt": {
             "hashes": [
                 "sha256:089098effa1bc35dc055366740a067a2fc76987e8ec75349eb9484061c54f535",
@@ -50,6 +57,7 @@
             ],
             "index": "pypi",
             "version": "==4.0.1"
+<<<<<<< HEAD
         },
         "click": {
             "hashes": [
@@ -262,6 +270,8 @@
             ],
             "index": "pypi",
             "version": "==0.22.0"
+=======
+>>>>>>> origin/Daniel
         }
     },
     "develop": {}

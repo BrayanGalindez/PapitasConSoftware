@@ -6,5 +6,8 @@ client = MongoClient(mongoUri)
 db = client.ClusterPapitas
 
 coleccionUser= db['users']
-coleccionRestaurante=1
+coleccionProp = db['propietarios']
+coleccionPlato = db['platos']
+coleccionResena = db['resenas']
+coleccionRestaurante = db['restaurantes']
 
