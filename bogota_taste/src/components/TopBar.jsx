@@ -24,7 +24,7 @@ function TopBar({ onSearch }, { onDataFetched }) {
   const handleSearch = async () => {
     try {
       onSearch(query);
-      const response = await axios.get('../../../rutas/restaurante.py',{
+      const response = await axios.get('http://localhost:8000/rutas/restaurante.py',{
         params: { nombre: query }
       });
       onDataFetched(response.data); 

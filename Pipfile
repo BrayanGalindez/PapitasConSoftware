@@ -4,16 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-<<<<<<< HEAD
-fastapi = "*"
-uvicorn = "*"
-pymongo = "*"
 bcrypt = "*"
-passlib = "*"
-pydantic = {extras = ["email"], version = "*"}
-=======
-bcrypt = "*"
->>>>>>> origin/Daniel
 
 [dev-packages]
 
