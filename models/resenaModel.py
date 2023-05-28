@@ -1,9 +1,9 @@
-from typing import Optional
 from pydantic import BaseModel
 
 class Resena(BaseModel):
-    id: Optional[int]
-    nombre: str
-    correo: str
-    passw: str
-    direccion: str
+    id: int
+    restaurante: str
+    plato: str
+    calificacion: int
+    titulo: str
+    cuerpo: str

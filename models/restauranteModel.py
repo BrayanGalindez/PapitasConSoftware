@@ -1,9 +1,9 @@
-from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 class Restaurante(BaseModel):
-    id: Optional[int]
+    nit: int
     nombre: str
-    correo: str
-    passw: str
+    propietario: str
+    correo: EmailStr
+    telefono: int
     direccion: str

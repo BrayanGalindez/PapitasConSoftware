@@ -9,20 +9,45 @@ router = APIRouter(
     tags=['Reseñas']
 )
 
-
+#todas las reseñas del sistema
 @router.get('/')
-async def findAllResenas():
-    resenas = resenasEntity(coleccionResena.find())
-    return f'status: ok, datos: {resenas}'
+async def findAllResenasSYSTEM():
+    return resenasEntity(coleccionResena.find())
 
 
+#todas las reseñas de un restaurante
+@router.get('/{restaurante}')
+async def findAllResenasRESTAURANT(restaurante: str):
+    return resenasEntity(coleccionResena.find({"restaurante": restaurante}))
+    
+
+
+#todas las reseñas de un usuario, , no funciona, debe revisarse
 @router.get('/{id}')
-async def findOneResena(id: str):
-    return resenaEntity(coleccionResena.find_one({"id": id}))
+async def findAllResenasUSER(id: int):
+    return resenasEntity(coleccionResena.find({"id": id}))
+
+
+#reseñas de un usuario sobre un restaurante, , no funciona, debe revisarse
+@router.get('/{restaurantes}')
+async def findAllResenasUserRestaurant(restaurante: str, id: int):
+    return resenasEntity(coleccionResena.find({"$and":[{"restaurante": restaurante}, {"id": id}]}))
+
+
+#reseñas de un plato de un restaurante
+@router.get('/{restaurante}/{plato}')
+async def findAllResenasRestaurantPlato(restaurante: str, plato: str):
+    return resenasEntity(coleccionResena.find({"$and":[{"restaurante": restaurante}, {"plato": plato}]}))
+
+
+#reseña en especifico, no funciona, debe revisarse
+@router.get('/{titulo}/{id}')
+async def findOneResena(id: int, titulo: str):
+    return resenaEntity(coleccionResena.find_one({"$and":[{"titulo": titulo}, {"id": id}]}))
 
 
 @router.post('/')
-async def insertOneResena(resena: Resena):
+async def insertOneResenaRestaurante(resena: Resena):
     resenaNueva = dict(resena)
     id = coleccionResena.insert_one(resenaNueva).inserted_id
 
@@ -30,21 +55,22 @@ async def insertOneResena(resena: Resena):
     return resenaEntity(resena)
 
 
-@router.put('/{id}')
-async def updateResena(id: str, resena: Resena):
+
+@router.put('/')
+async def updateResena(titulo: str,id: int, resena: Resena):
     try:
         resenaNueva = dict(resena)
         resenaNueva['id'] = id
-        coleccionResena.find_one_and_update({"id": id}, {"$set": dict(resenaNueva)})
+        coleccionResena.find_one_and_update({"$and":[{"titulo": titulo}, {"id": id}]}, {"$set": dict(resenaNueva)})
         return Response(status_code=HTTP_201_CREATED)
     except:
         return f'Reseña no encontrada, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
 
 
-@router.delete('/{id}')
-def deleteResena(id: str):
+@router.delete('/')
+def deleteResena(titulo: str,id: int):
     try:
-        resenaEntity(coleccionResena.find_one_and_delete({"id": id}))
+        resenaEntity(coleccionResena.find_one_and_delete({"$and":[{"titulo": titulo}, {"id": id}]}))
         return f'Reseña eliminada satisfactoriamente', Response(status_code=HTTP_204_NO_CONTENT)
 
     except:

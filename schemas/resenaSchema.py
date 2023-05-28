@@ -1,10 +1,11 @@
 def resenaEntity(item) -> dict:
     return{
-        "id":str(item['_id']),
-        "nombre":item['nombre'],
-        "correo":item['correo'],
-        "passw":item['passw'],
-        "direccion":item['direccion']
+        "id":int(item['id']),
+        "restaurante":item['restaurante'],
+        "plato":item['plato'],
+        "calificacion":item['calificacion'],
+        "titulo":item['titulo'],
+        "cuerpo":item['cuerpo']
     }
 
 def resenasEntity(entity) -> list:
