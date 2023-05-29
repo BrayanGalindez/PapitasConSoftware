@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 bcrypt = "*"
+pyjwt = "*"
+python-decouple = "*"
 
 [dev-packages]
 
