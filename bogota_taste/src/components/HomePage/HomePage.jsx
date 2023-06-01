@@ -68,27 +68,27 @@ const HomePage = () => {
                   Precio
                 </Typography>
                 <Slider
-                  defaultValue={20} marks={[{value:0, label:'0 COP'},{value:100000, label:'100.000 COP'}]} min={0} max={100000} step={1000} aria-label="Default" valueLabelDisplay="auto"
+                  style={{color:'#e78284'}} defaultValue={20} marks={[{value:0, label:'0 COP'},{value:100000, label:'100.000 COP'}]} min={0} max={100000} step={1000} aria-label="Default" valueLabelDisplay="auto"
                 />
 
                 <Typography id="distancia" gutterBottom>
                   Distancia
                 </Typography>
                 <Slider
-                  defaultValue={20} marks={[{value:0, label:'0km'},{value:40, label:'40km'}]} min={0} max={40} aria-label="Default" valueLabelDisplay="auto"
+                  style={{color:'#e78284'}} defaultValue={20} marks={[{value:0, label:'0km'},{value:40, label:'40km'}]} min={0} max={40} aria-label="Default" valueLabelDisplay="auto"
                 />
               </Box>
             </div>
 
             <div className='rating'>
               <Typography component="legend"> Calificación</Typography>
-              <Rating defaultValue={null} precision={0.5} size="large" />
+              <Rating defaultValue={null} precision={0.5} sx={{width: 200}} />
             </div>
             
           </div>
           <div className='restaurantes'>
             <h1 className='search-propmt'>{searchQuery ? `Resultados de la busqueda: ${searchQuery}` : 'Restaurantes destacados'}</h1>
-            <RestaurantCardList className="lista-restaurantes" searchData={data}></RestaurantCardList>
+            <RestaurantCardList className="lista-restaurantes" searchData={sampleData}></RestaurantCardList>
             <Tooltip title="Crear restaurante">
               <Fab
                 className='boton-crear-restaurante'
@@ -98,7 +98,7 @@ const HomePage = () => {
                   right: (theme) => theme.spacing(2),
                   marginBottom: (theme) => theme.spacing(2)
                 }}
-                color="primary"
+                style={{background:'#e78284'}}
                 onClick={handleOpenCreateRestaurant}
                 // href="/crear"
                 // target="_blank"

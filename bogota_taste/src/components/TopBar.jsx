@@ -91,7 +91,7 @@ function TopBar({ onSearch }, { onDataFetched }) {
             <div className='logo'>
             <img className='logo-img'
             alt='Logo'
-            //src=''
+            src='/images/papas-fritas.png'
             />
             <span className='logo-text'>
                 <span>BOGO</span>
@@ -112,16 +112,17 @@ function TopBar({ onSearch }, { onDataFetched }) {
                   placeholder="Busca restaurante o plato..."
                 />
                 <button onClick={handleSearch} className="search-icon">
-                  <SearchIcon sx={2}></SearchIcon>
+                  <SearchIcon style={{color:'#e78284'}} sx={2}></SearchIcon>
                 </button>
               </div>
             </div>
 
             <div className='botones'>
             < Stack spacing={2} direction="row">
-                <Link to="/favoritos"><Button variant="outlined">Mis favoritos</Button></Link>
+                <Link to="/favoritos"><Button style={{ borderColor:'#e78284', color: '#e78284' }} variant="outlined">Mis favoritos</Button></Link>
                 <div>
                 <IconButton
+                  style={{ color: '#e78284' }}
                   size="medium"
                   ref={anchorRef}
                   id="composition-button"
@@ -202,8 +203,8 @@ function TopBar({ onSearch }, { onDataFetched }) {
 
             <div className='botones'>
             < Stack spacing={2} direction="row">
-                <Link to="/iniciar"><Button variant="outlined">Iniciar sesión</Button></Link>
-                <Link to="/registrar"><Button variant="contained">Registrarse</Button></Link>
+                <Link to="/iniciar"><Button style={{ borderColor:'#e78284', color: '#e78284' }} variant="outlined">Iniciar sesión</Button></Link>
+                <Link to="/registrar"><Button style={{background:'#F9E2AF', borderColor:'#e78284', color: '#e78284' }} variant="contained">Registrarse</Button></Link>
             </Stack>
             </div>
             </nav>

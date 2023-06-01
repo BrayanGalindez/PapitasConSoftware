@@ -10,8 +10,11 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Button from '@mui/material/Button';
 import '../../styles/HomePage/HomePage.css';
+import '../../styles/HomePage/RestaurantCardList.css'
 import { Tooltip } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 export default function RestaurantCardList({ searchData }) {
   const numCards = searchData.length;
@@ -25,7 +28,7 @@ export default function RestaurantCardList({ searchData }) {
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  (({item.propietario}).substring(0,1)).toUpperCase()
+                  {(item.nombre).substring(0,1)}
                 </Avatar>
               }
               title={item.nombre}
@@ -41,7 +44,7 @@ export default function RestaurantCardList({ searchData }) {
               <ul>
                 <li>Dirección:{item.direccion}</li>
                 <li>Distancia:{item.distancia}</li>
-                <li>Calificación:{item.rating}</li>
+                <li className='restaurant-rating'><Typography component="legend">Calificación: </Typography><Rating className='stars' defaultValue={item.rating} precision={0.5} size="medium" readOnly/></li>
               </ul>
             </CardContent>
             <CardActions disableSpacing>
