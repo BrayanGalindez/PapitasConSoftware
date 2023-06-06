@@ -7,21 +7,21 @@ const EditRestaurant = ({ restaurantId }) => {
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
 
-  useEffect(() => {
-    fetchRestaurant();
-  }, []);
+  // useEffect(() => {
+  //   fetchRestaurant();
+  // }, []);
 
-  const fetchRestaurant = async () => {
-    try {
-      const response = await axios.get(`/api/restaurants/${restaurantId}`);
-      const { name, description, address } = response.data;
-      setName(name);
-      setDescription(description);
-      setAddress(address);
-    } catch (error) {
-      console.error('Error fetching restaurant:', error);
-    }
-  };
+  // const fetchRestaurant = async () => {
+  //   try {
+  //     const response = await axios.get(`/api/restaurants/${restaurantId}`);
+  //     const { name, description, address } = response.data;
+  //     setName(name);
+  //     setDescription(description);
+  //     setAddress(address);
+  //   } catch (error) {
+  //     console.error('Error fetching restaurant:', error);
+  //   }
+  // };
 
   const handleEditRestaurant = async (event) => {
     event.preventDefault();
