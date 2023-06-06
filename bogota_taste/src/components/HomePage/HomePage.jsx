@@ -9,13 +9,13 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import Grid from '@mui/material/Grid';
 import RestaurantCardList from './RestaurantCardList';
-import TopBar from '../TopBar/TopBar';
+import TopBar from '../TopBar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
 import Footer from '../Footer';
+import sampleData from './data';
 import CreateRestaurant from '../CreateRestaurant.jsx'; // Importa el componente del formulario CrearRestaurante
 
 const HomePage = () => {
@@ -28,9 +28,19 @@ const HomePage = () => {
   const handleCloseCreateRestaurant = () => {
     setShowCreateRestaurant(false);
   };
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const [data, setData] = useState([]);
+
+  const handleDataFetched = (fetchedData) => {
+    setData(fetchedData);
+  }
     return (
       <div className='home-page'>
-        <TopBar></TopBar>
+        <TopBar onSearch={handleSearch} onDataFetched={handleDataFetched}></TopBar>
         <div className='row'>
           <div className='filters'>
             <FormControl className='lista-ordenar' component="fieldset">
@@ -58,27 +68,27 @@ const HomePage = () => {
                   Precio
                 </Typography>
                 <Slider
-                  defaultValue={20} marks={[{value:0, label:'0 COP'},{value:100000, label:'100.000 COP'}]} min={0} max={100000} step={1000} aria-label="Default" valueLabelDisplay="auto"
+                  style={{color:'#e78284'}} defaultValue={20} marks={[{value:0, label:'0 COP'},{value:100000, label:'100.000 COP'}]} min={0} max={100000} step={1000} aria-label="Default" valueLabelDisplay="auto"
                 />
 
                 <Typography id="distancia" gutterBottom>
                   Distancia
                 </Typography>
                 <Slider
-                  defaultValue={20} marks={[{value:0, label:'0km'},{value:40, label:'40km'}]} min={0} max={40} aria-label="Default" valueLabelDisplay="auto"
+                  style={{color:'#e78284'}} defaultValue={20} marks={[{value:0, label:'0km'},{value:40, label:'40km'}]} min={0} max={40} aria-label="Default" valueLabelDisplay="auto"
                 />
               </Box>
             </div>
 
             <div className='rating'>
               <Typography component="legend"> Calificación</Typography>
-              <Rating defaultValue={null} precision={0.5} size="large" />
+              <Rating defaultValue={null} precision={0.5} sx={{width: 200}} />
             </div>
             
           </div>
           <div className='restaurantes'>
-            <h1 className='search-propmt'>Restaurantes destacados</h1>
-            <RestaurantCardList className="lista-restaurantes"></RestaurantCardList>
+            <h1 className='search-propmt'>{searchQuery ? `Resultados de la busqueda: ${searchQuery}` : 'Restaurantes destacados'}</h1>
+            <RestaurantCardList className="lista-restaurantes" searchData={sampleData}></RestaurantCardList>
             <Tooltip title="Crear restaurante">
               <Fab
                 className='boton-crear-restaurante'
@@ -88,7 +98,7 @@ const HomePage = () => {
                   right: (theme) => theme.spacing(2),
                   marginBottom: (theme) => theme.spacing(2)
                 }}
-                color="primary"
+                style={{background:'#e78284'}}
                 onClick={handleOpenCreateRestaurant}
                 // href="/crear"
                 // target="_blank"

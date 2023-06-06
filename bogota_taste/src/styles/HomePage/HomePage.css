@@ -35,6 +35,7 @@
 }
 
 .filters .rating{
+    width: 200px;
     margin-top: 4rem;
     align-items: center;
 }

@@ -10,11 +10,38 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SearchComponent from '../TopBar/SearchComponent';
+import axios from 'axios';
+import SearchIcon from '@mui/icons-material/Search';
 
-import '../../styles/TopBar/TopBar.css';
+import '../styles/TopBar.css';
 
-function TopBar() {
+function TopBar({ onSearch }, { onDataFetched }) {
+
+  const [query, setQuery] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleSearch = async () => {
+    try {
+      onSearch(query);
+      const response = await axios.get('http://localhost:8000/rutas/restaurante.py',{
+        params: { nombre: query }
+      });
+      onDataFetched(response.data); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleLogin = () => {
@@ -24,9 +51,6 @@ function TopBar() {
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
-
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -67,7 +91,7 @@ function TopBar() {
             <div className='logo'>
             <img className='logo-img'
             alt='Logo'
-            //src=''
+            src='/images/papas-fritas.png'
             />
             <span className='logo-text'>
                 <span>BOGO</span>
@@ -78,14 +102,27 @@ function TopBar() {
             </div>
 
             <div className='searchbar'>
-                <SearchComponent></SearchComponent>
+              <div className='search-container'>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  className="search-input"
+                  placeholder="Busca restaurante o plato..."
+                />
+                <button onClick={handleSearch} className="search-icon">
+                  <SearchIcon style={{color:'#e78284'}} sx={2}></SearchIcon>
+                </button>
+              </div>
             </div>
 
             <div className='botones'>
             < Stack spacing={2} direction="row">
-                <Link to="/favoritos"><Button variant="outlined">Mis favoritos</Button></Link>
+                <Link to="/favoritos"><Button style={{ borderColor:'#e78284', color: '#e78284' }} variant="outlined">Mis favoritos</Button></Link>
                 <div>
                 <IconButton
+                  style={{ color: '#e78284' }}
                   size="medium"
                   ref={anchorRef}
                   id="composition-button"
@@ -149,13 +186,25 @@ function TopBar() {
             </div>
 
             <div className='searchbar'>
-                <input type='search' placeholder='Busca restaurante o plato'/>
+              <div className='search-container'>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  className="search-input"
+                  placeholder="Busca restaurante o plato..."
+                />
+                <button onClick={handleSearch} className="search-icon">
+                  <SearchIcon sx={2}></SearchIcon>
+                </button>
+              </div>
             </div>
 
             <div className='botones'>
             < Stack spacing={2} direction="row">
-                <Link to="/iniciar"><Button variant="outlined">Iniciar sesión</Button></Link>
-                <Link to="/registrar"><Button variant="contained">Registrarse</Button></Link>
+                <Link to="/iniciar"><Button style={{ borderColor:'#e78284', color: '#e78284' }} variant="outlined">Iniciar sesión</Button></Link>
+                <Link to="/registrar"><Button style={{background:'#F9E2AF', borderColor:'#e78284', color: '#e78284' }} variant="contained">Registrarse</Button></Link>
             </Stack>
             </div>
             </nav>

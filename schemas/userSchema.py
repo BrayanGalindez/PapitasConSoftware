@@ -8,7 +8,8 @@ def userEntity(item) -> dict:
         "passw":str(item['passw']),
         "comentarios":item["comentarios"],
         "resAnadidos":item["resAnadidos"],
-        "telefono":item["telefono"]
+        "telefono":item["telefono"],
+        "tipo":item["tipo"]
     }
 
 def usersEntity(entity) -> list:

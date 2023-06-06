@@ -1,9 +1,10 @@
 def restauranteEntity(item) -> dict:
     return{
-        "id":str(item['_id']),
+        "nit":item['nit'],
         "nombre":item['nombre'],
+        "propietario":item['propietario'],
         "correo":item['correo'],
-        "passw":item['passw'],
+        "telefono":item['telefono'],
         "direccion":item['direccion']
     }
 

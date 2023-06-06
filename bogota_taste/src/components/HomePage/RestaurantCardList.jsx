@@ -10,38 +10,41 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Button from '@mui/material/Button';
 import '../../styles/HomePage/HomePage.css';
+import '../../styles/HomePage/RestaurantCardList.css'
 import { Tooltip } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
-export default function RestaurantCardList() {
-  const numCards = 5;
+export default function RestaurantCardList({ searchData }) {
+  const numCards = searchData.length;
   const cardsPerRow = numCards >= 3 ? 3 : numCards;
   
   return (
     <Grid container spacing={2} rowGap={2} justifyContent="center">
-      {(Array.from(Array(numCards))).map((_, index) => (
-        <Grid item xs={12/cardsPerRow} sm={4} md={4} key={index}>
+      {searchData.map((item) => (
+        <Grid item xs={12/cardsPerRow} sm={4} md={4} key={item.nit}>
           <Card style={{ marginRight: '2rem' }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
+                  {(item.nombre).substring(0,1)}
                 </Avatar>
               }
-              title="Restaurante"
-              subheader="September 14, 2016"
+              title={item.nombre}
+              subheader={item.creation_date}
             />
             <CardMedia
               component="img"
               height="150"
-              image="/static/images/cards/paella.jpg"
-              alt="Paella dish"
+              image={item.img_url}
+              alt={item.img_alt}
             />
             <CardContent>
               <ul>
-                <li>Dirección:</li>
-                <li>Distancia:</li>
-                <li>Calificación:</li>
+                <li>Dirección:{item.direccion}</li>
+                <li>Distancia:{item.distancia}</li>
+                <li className='restaurant-rating'><Typography component="legend">Calificación: </Typography><Rating className='stars' defaultValue={item.rating} precision={0.5} size="medium" readOnly/></li>
               </ul>
             </CardContent>
             <CardActions disableSpacing>

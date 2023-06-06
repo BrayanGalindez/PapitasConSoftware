@@ -1,11 +1,10 @@
 def propietarioEntity(item) -> dict:
     return{
-        "id":str(item['_id']),
+        "id":item['id'],
         "nombre":item['nombre'],
         "correo":item['correo'],
-        "passw":item['passw'],
-        "direccion":item['direccion']
+        "telefono":item['telefono']
     }
 
-def propietariossEntity(entity) -> list:
+def propietariosEntity(entity) -> list:
     return [propietarioEntity(item) for item in entity]
