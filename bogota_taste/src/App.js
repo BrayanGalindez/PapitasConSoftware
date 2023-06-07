@@ -8,6 +8,8 @@ import EditRestaurant from './components/EditRestaurant';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import MiCuenta from './components/MiCuenta';
+import FavoritesView from './components/FavoritesView';
+import AddReviewView from './components/AddReviewView';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="consultar" element={<RestaurantQueryView/>}/>
           <Route path="eliminar" element={<DeleteRestaurant/>}/>
           <Route path="editar" element={<EditRestaurant/>}/>
+          <Route path="favoritos" element={<FavoritesView/>}/>
+          <Route path="reseña" element={<AddReviewView/>}/>
         </Route>
       </Routes>
     </div>
