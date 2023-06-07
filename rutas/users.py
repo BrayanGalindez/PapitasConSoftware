@@ -3,7 +3,8 @@ from schemas.userSchema import userEntity, usersEntity
 from config.db import coleccionUser
 from models.userModel import User
 from models.loginModel import loginModel
-from bcrypt import  hashpw, gensalt
+from bcrypt import  hashpw, gensalt, checkpw
+from passlib.context import CryptContext
 import auth.jwt_handler as jwth
 from fastapi import HTTPException
 from starlette.status import HTTP_204_NO_CONTENT, HTTP_201_CREATED, HTTP_500_INTERNAL_SERVER_ERROR
@@ -14,6 +15,7 @@ router = APIRouter(
     tags=['Usuarios']
 )
 salt = gensalt()
+pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
 
@@ -39,7 +41,8 @@ async  def findOneUser(id:int):
 async def insertOneUser(user:User):
     usuarioNuevo = dict(user)
     print(usuarioNuevo['passw'])
-    usuarioNuevo['passw'] = str(hashpw(bytes(usuarioNuevo['passw']),salt))
+    usuarioNuevo['passw'] = pwd_context.hash(usuarioNuevo['passw'])
+    #usuarioNuevo['passw'] = str(hashpw(bytes(usuarioNuevo['passw']),salt))
 
     id = coleccionUser.insert_one(usuarioNuevo).inserted_id
 
@@ -70,18 +73,14 @@ def deleteUser(id: int):
 async def login(user: loginModel):
     try:
         userNuevo = dict(user)
-        print(userNuevo['passw'])
-        print(userNuevo['correo'])
-        userNuevo['passw'] = str(hashpw(bytes(userNuevo['passw']),salt))
         usuario = userEntity(coleccionUser.find_one({"correo": userNuevo['correo']}))
-        print(usuario['correo'])
-        print(usuario['passw'])
-        print(userNuevo['passw'])
-        if usuario['passw'] == userNuevo['passw']:
+        password = userNuevo['passw']
+        hashed = usuario['passw']
+        if pwd_context.verify(password, hashed):
             token = jwth.signJWT(usuario['id'])
             return {'token': token}
         else:
             raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
+        raise HTTPException(status_code=401, detail="Correo o contraseñfdgsdga incorrectos")

@@ -7,7 +7,7 @@ class User(BaseModel):
     apellido: str
     direccion:str
     correo: EmailStr
-    passw: bytes
+    passw: str
     comentarios: int
     resAnadidos: int
     telefono: int
