@@ -1,5 +1,4 @@
 import React, { useState} from 'react';
-import '../../styles/HomePage/HomePage.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
@@ -9,13 +8,14 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import RestaurantCardList from './RestaurantCardList';
-import TopBar from '../TopBar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
-import Footer from '../Footer';
 import sampleData from './data';
+import '../../styles/HomePage/HomePage.css';
+import TopBar from '../TopBar';
+import Footer from '../Footer';
+import RestaurantCardList from './RestaurantCardList';
 import CreateRestaurant from '../CreateRestaurant.jsx'; // Importa el componente del formulario CrearRestaurante
 
 const HomePage = () => {
@@ -28,6 +28,7 @@ const HomePage = () => {
   const handleCloseCreateRestaurant = () => {
     setShowCreateRestaurant(false);
   };
+  
   const [searchQuery, setSearchQuery] = useState('');
   const handleSearch = (query) => {
     setSearchQuery(query);
