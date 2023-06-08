@@ -10,6 +10,8 @@ import HomePage from './components/HomePage/HomePage';
 import MiCuenta from './components/MiCuenta';
 import FavoritesView from './components/FavoritesView';
 import AddReviewView from './components/AddReviewView';
+import HomePage2 from './components/Home';
+import UserAccount from './components/UserAccount';
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" >
           <Route path="inicio" element={<HomePage/>}/>
+          <Route path="inicio2" element={<HomePage2/>}/>
           <Route path="iniciar" element={<SignIn/>}/>
           <Route path="registrar" element={<SignUp/>}/>
           <Route path="micuenta" element={<MiCuenta/>}/>
@@ -26,6 +29,7 @@ function App() {
           <Route path="editar" element={<EditRestaurant/>}/>
           <Route path="favoritos" element={<FavoritesView/>}/>
           <Route path="reseña" element={<AddReviewView/>}/>
+          <Route path="cuenta" element={<UserAccount/>}/>
         </Route>
       </Routes>
     </div>
