@@ -2,7 +2,11 @@ from fastapi import APIRouter, Response
 from schemas.userSchema import userEntity, usersEntity
 from config.db import coleccionUser
 from models.userModel import User
-from bcrypt import  hashpw, gensalt
+from models.loginModel import loginModel
+from bcrypt import  hashpw, gensalt, checkpw
+from passlib.context import CryptContext
+import auth.jwt_handler as jwth
+from fastapi import HTTPException
 from starlette.status import HTTP_204_NO_CONTENT, HTTP_201_CREATED, HTTP_500_INTERNAL_SERVER_ERROR
 
 
@@ -11,6 +15,7 @@ router = APIRouter(
     tags=['Usuarios']
 )
 salt = gensalt()
+pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
 
@@ -20,6 +25,7 @@ salt = gensalt()
 async def findAllUsers():
     usuarios = usersEntity(coleccionUser.find())
     return f'status: ok, datos: {usuarios}'
+
 
 
 def imprimirUsuario(user: dict):
@@ -34,7 +40,9 @@ async  def findOneUser(id:int):
 @router.post('/')
 async def insertOneUser(user:User):
     usuarioNuevo = dict(user)
-    usuarioNuevo['passw'] = str(hashpw(bytes(usuarioNuevo['passw']),salt))
+    print(usuarioNuevo['passw'])
+    usuarioNuevo['passw'] = pwd_context.hash(usuarioNuevo['passw'])
+    #usuarioNuevo['passw'] = str(hashpw(bytes(usuarioNuevo['passw']),salt))
 
     id = coleccionUser.insert_one(usuarioNuevo).inserted_id
 
@@ -61,3 +69,18 @@ def deleteUser(id: int):
     except:
         return f'Usuario no encontrado, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
 
+@router.post('/login')
+async def login(user: loginModel):
+    try:
+        userNuevo = dict(user)
+        usuario = userEntity(coleccionUser.find_one({"correo": userNuevo['correo']}))
+        password = userNuevo['passw']
+        hashed = usuario['passw']
+        if pwd_context.verify(password, hashed):
+            token = jwth.signJWT(usuario['id'])
+            return {'token': token}
+        else:
+            raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=401, detail="Correo o contraseñfdgsdga incorrectos")
