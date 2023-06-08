@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/HomePage/HomePage.css';
+import '../../styles/HomePage/HomePage.css';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
 import Filter from './Filter.jsx';
-import RestaurantCardList from './RestaurantCard.jsx';
+import RestaurantCardList from '../Restaurant/RestaurantPage';
 import CreateRestaurant from './CreateRestaurant.jsx';
 
 const HomePage = () => {

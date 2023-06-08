@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RestaurantCard from './RestaurantCard';
-import '../styles/FavoritesView.css';
+import RestaurantCard from '../Restaurant/RestaurantCard';
+import '../../styles/FavoritesView.css';
 
 const FavoritesView = () => {
   const [favoriteRestaurants, setFavoriteRestaurants] = useState([]);

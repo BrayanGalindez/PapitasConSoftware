@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaEnvelope, FaPhone } from 'react-icons/fa';
 import { RiInstagramFill, RiFacebookFill, RiTwitterFill } from 'react-icons/ri';
-import logo from '../utils/logo.jpg';
-import '../styles/Footer.css';
+import logo from '../../utils/logo.jpg';
+import '../../styles/Footer.css';
 
 const Footer = () => {
   return (

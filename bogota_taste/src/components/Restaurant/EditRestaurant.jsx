@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/EditRestaurant.css'; // Ruta al archivo CSS
+import '../../styles/EditRestaurant.css'; // Ruta al archivo CSS
 
 const EditRestaurant = ({ restaurantId }) => {
   const [name, setName] = useState('');

@@ -12,9 +12,9 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
-import logo from '../utils/logo.jpg';
+import logo from '../../utils/logo.jpg';
 
-import '../styles/TopBar.css';
+import '../../styles/TopBar.css';
 
 function TopBar({ onSearch }, { onDataFetched }) {
 
@@ -155,7 +155,7 @@ function TopBar({ onSearch }, { onDataFetched }) {
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
                           >
-                            <Link className='link-micuenta' to='/micuenta'><MenuItem onClick={handleClose}>My account</MenuItem></Link>
+                            <Link className='link-micuenta' to='/cuenta'><MenuItem onClick={handleClose}>My account</MenuItem></Link>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                           </MenuList>
                         </ClickAwayListener>

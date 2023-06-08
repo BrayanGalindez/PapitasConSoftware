@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/SignUp.css';
+import '../../styles/SignUp.css';
 
 const SignUp = () => {
   // Estado para almacenar los valores de los campos del formulario

@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Avatar from '@mui/material/Avatar';
 import { Button } from "@mui/material";
 import '../styles/MiCuenta.css';
-import Footer from "./Footer";
+import Footer from "../Home/Footer";
 
 const MiCuenta = () => {
     return (

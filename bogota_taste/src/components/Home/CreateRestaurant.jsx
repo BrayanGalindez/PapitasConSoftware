@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import axios from 'axios';
-import '../styles/CreateRestaurant.css'; // Ruta al archivo CSS
+import '../../styles/CreateRestaurant.css'; // Ruta al archivo CSS
+
 import Modal from 'react-modal';
 const CreateRestaurant = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');

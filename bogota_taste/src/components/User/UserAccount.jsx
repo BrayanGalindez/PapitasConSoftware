@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import TopBar from './TopBar';
-import Footer from './Footer';
-import UserData from './UserData';
+import TopBar from '../Home/TopBar';
+import Footer from '../Home/Footer';
+import UserData from '../User/UserData';
 
 const UserAccount = () => {
   const [userData, setUserData] = useState(null);

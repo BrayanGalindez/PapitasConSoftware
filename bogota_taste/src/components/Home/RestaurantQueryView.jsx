@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import '../styles/RestaurantQueryView.css';
+import '../../styles/RestaurantQueryView.css';
 
 const RestaurantQueryView = ({ restaurant }) => {
   const [showReviews, setShowReviews] = useState(false);
