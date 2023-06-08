@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
+import logo from '../utils/logo.jpg';
 
 import '../styles/TopBar.css';
 
@@ -89,10 +90,7 @@ function TopBar({ onSearch }, { onDataFetched }) {
             <nav className='topbar'>
 
             <div className='logo'>
-            <img className='logo-img'
-            alt='Logo'
-            src='/images/papas-fritas.png'
-            />
+            <img src={logo} alt="Logo" className="logo" />
             <span className='logo-text'>
                 <span>BOGO</span>
                 <br></br>
