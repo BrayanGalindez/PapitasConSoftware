@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../../styles/User/UserAccount.css'
 import TopBar from '../Home/TopBar';
 import Footer from '../Home/Footer';
 import UserData from '../User/UserData';

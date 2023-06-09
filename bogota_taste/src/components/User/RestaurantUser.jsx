@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import '../../styles/User/RestaurantUser.css'
 
 const RestaurantUser = ({ restaurant }) => {
   const handleDelete = async () => {

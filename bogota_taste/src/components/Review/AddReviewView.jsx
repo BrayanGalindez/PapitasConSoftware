@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../../styles/AddReviewView.css';
+import '../../styles/Review/AddReviewView.css';
 
 const AddReviewView = ({ restaurantId, onClose, onAddReview }) => {
   const [opinion, setOpinion] = useState('');

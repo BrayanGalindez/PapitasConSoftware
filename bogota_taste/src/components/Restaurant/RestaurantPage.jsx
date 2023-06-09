@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../styles/Restaurant/RestaurantPage.css'
 import RestaurantList from './RestaurantList';
 
 const RestaurantPage = () => {

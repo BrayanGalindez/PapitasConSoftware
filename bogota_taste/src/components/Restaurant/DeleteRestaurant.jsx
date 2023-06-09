@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import '../../styles/DeleteRestaurant.css';
+import '../../styles/Restaurant/DeleteRestaurant.css';
 
 const DeleteRestaurant = ({ restaurantId }) => {
   const handleDeleteRestaurant = async () => {

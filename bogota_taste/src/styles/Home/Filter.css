@@ -1,0 +1,34 @@
+.filter-container {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+  }
+  
+  .filter-title {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-option {
+    margin-bottom: 10px;
+  }
+  
+  .filter-option input {
+    margin-right: 5px;
+  }
+  
+  .filter-option input:checked + .filter-label {
+    color: #e78284;
+    font-weight: bold;
+  }
+  
+  .filter-label {
+    cursor: pointer;
+  }
+  
