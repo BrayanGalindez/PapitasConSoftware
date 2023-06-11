@@ -1,21 +1,18 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import logo from '../../utils/logo.jpg';
-import { AuthContext } from '../../AuthContext';
-import '../../styles/Home/TopBar.css';
-import Search from '../Home/Search';
-import UserAccount from '../User/UserAccount';
-import RestaurantFavorites from '../Home/RestaurantFavorites';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../../AuthContext";
+import Search from "./Search";
+import logo from "../../utils/logo.jpg";
 
-function TopBar() {
-  const [query, setQuery] = useState('');
-  const { isLoggedIn, handleLogout } = useContext(AuthContext);
+const TopBar = ({ showSearch }) => {
+  const [query, setQuery] = useState("");
+  const { isAuthenticated, handleLogout } = useContext(AuthContext);
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get('URL_DE_TU_API/restaurantes', {
-        params: { query }
+      const response = await axios.get("URL_DE_TU_API/restaurantes", {
+        params: { query },
       });
       const restaurantes = response.data; // Suponiendo que la respuesta contiene un arreglo de objetos de restaurantes
       // Actualizar el estado o realizar cualquier otra acción con los resultados de la búsqueda
@@ -30,7 +27,7 @@ function TopBar() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSearch();
     }
   };
@@ -39,49 +36,47 @@ function TopBar() {
     <div className="top-bar">
       <nav className="topbar">
         <div className="logo">
-        <Link to="/inicio">
-          <img src={logo} alt="Logo" className="logo" />
-        </Link>
-
+          <Link to="/inicio">
+            <img src={logo} alt="Logo" className="logo" />
+          </Link>
         </div>
-        <div className="searchbar"> {/* Add a separate container for the searchbar */}
-          <div className="search-container">
-            <Search /> {/* Move the Search component inside the search-container */}
-          </div>
+        <div className="searchbar">
+          {showSearch && (
+            <div className="search-container">
+              <Search
+                value={query}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
+          )}
         </div>
         <div className="botones">
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <>
               <Link to="/favoritos">
-                <button
-                  className="btn btn-outline btn-favorites"
-                >
+                <button className="btn btn-outline btn-favorites">
                   Favoritos
                 </button>
               </Link>
               <Link to="/cuenta">
-                <button
-                  className="btn btn-outline btn-account"
-                >
+                <button className="btn btn-outline btn-account">
                   Cuenta
                 </button>
               </Link>
-              <UserAccount />
-              <RestaurantFavorites />
+              <button className="btn btn-contained" onClick={handleLogout}>
+                Cerrar sesión
+              </button>
             </>
           ) : (
             <>
               <Link to="/iniciar">
-                <button
-                  className="btn btn-outline btn-login"
-                >
+                <button className="btn btn-outline btn-login">
                   Iniciar sesión
                 </button>
               </Link>
               <Link to="/registrar">
-                <button
-                  className="btn btn-contained btn-register"
-                >
+                <button className="btn btn-contained btn-register">
                   Registrarse
                 </button>
               </Link>
@@ -91,6 +86,6 @@ function TopBar() {
       </nav>
     </div>
   );
-}
+};
 
 export default TopBar;
