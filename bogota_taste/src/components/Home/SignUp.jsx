@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import '../../styles/SignUp.css';
+import TopBar from './TopBar.jsx';
+import Footer from './Footer.jsx';
+import '../../styles/Home/SignUp.css';
 
 const SignUp = () => {
   // Estado para almacenar los valores de los campos del formulario
@@ -33,34 +35,60 @@ const SignUp = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2>Crear cuenta</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Nombre</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirm-password">Confirmar contraseña</label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Crear cuenta</button>
-      </form>
-      <p>¿Ya tienes una cuenta? <Link to="/iniciar">Inicia sesión aquí</Link></p>
+    <div>
+      <TopBar showSearch={false} />
+      <div className="signup-form-container">
+        <h2 className="signup-form-title">Crear cuenta</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="signup-form-group">
+            <label htmlFor="name" className="signup-form-label">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="email" className="signup-form-label">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="password" className="signup-form-label">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="confirm-password" className="signup-form-label">Confirmar contraseña</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <button type="submit" className="signup-form-button">Crear cuenta</button>
+        </form>
+        <p className="signup-form-text">¿Ya tienes una cuenta? <Link to="/iniciar" className="signup-form-link">Inicia sesión aquí</Link></p>
+      </div>
+      <Footer />
     </div>
   );
 };
