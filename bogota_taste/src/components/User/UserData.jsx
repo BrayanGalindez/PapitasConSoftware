@@ -8,14 +8,22 @@ const UserData = ({ data }) => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
-    if (data) {
-      setName(data.name);
-      setLastName(data.lastName);
-      setEmail(data.email);
-    }
-  }, [data]);
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/users/${userId}`);
+        setName(response.data.name);
+        setLastName(response.data.lastName);
+        setEmail(response.data.email);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+  
+    fetchUserData();
+  }, [userId]);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -29,7 +37,7 @@ const UserData = ({ data }) => {
     e.preventDefault();
 
     try {
-      await axios.put(`/api/user/${data.id}`, {
+      await axios.put(`http://127.0.0.1:8000/users/${data.id}`, {
         name,
         lastName,
         email,
@@ -79,7 +87,7 @@ const UserData = ({ data }) => {
           <button onClick={handleEdit}>Edit</button>
         </div>
       )}
-      {data.restaurants && (
+      {data && data.restaurants && (
         <div>
           <h3>Added Restaurants:</h3>
           <ul>
