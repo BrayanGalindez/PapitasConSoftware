@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/HomePage/HomePage.css';
+import '../../styles/Home/Home.css';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
 import Filter from './Filter.jsx';
@@ -8,6 +8,7 @@ import CreateRestaurant from './CreateRestaurant.jsx';
 
 const HomePage = () => {
   const [showCreateRestaurant, setShowCreateRestaurant] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenCreateRestaurant = () => {
     setShowCreateRestaurant(true);
@@ -19,15 +20,17 @@ const HomePage = () => {
 
   return (
     <div className='home-page'>
-      <TopBar />
+      <TopBar showSearch={true} />
       <div className='row'>
         <Filter />
-        <div className='restaurantes'>
-          <h1>Restaurantes destacados</h1>
+        <div className='restaurants'>
+          <h1>Featured restaurants</h1>
           <RestaurantCardList />
-          <button className='floating-button' onClick={handleOpenCreateRestaurant}>
-            +
-          </button>
+          {isLoggedIn && (
+            <button className='floating-button' onClick={handleOpenCreateRestaurant}>
+              +
+            </button>
+          )}
         </div>
       </div>
       <Footer />
