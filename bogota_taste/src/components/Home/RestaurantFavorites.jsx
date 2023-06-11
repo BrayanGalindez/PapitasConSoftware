@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RestaurantCard from '../Restaurant/RestaurantCard';
-import '../../styles/FavoritesView.css';
+import '../../styles/Home/Footer.css';
+import '../../styles/Home/TopBar.css';
+import '../../styles/Home/RestaurantFavorites.css';
+import TopBar from './TopBar.jsx';
+import Footer from './Footer.jsx';
+import RestaurantCard from '../Restaurant/RestaurantCard.jsx';
 
-const FavoritesView = () => {
+
+const RestaurantFavorites = () => {
   const [favoriteRestaurants, setFavoriteRestaurants] = useState([]);
 
   useEffect(() => {
@@ -31,10 +36,11 @@ const FavoritesView = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className="heading">Tus restaurantes favoritos</h2>
+    <div className="restaurant-favorites">
+      <TopBar />
+      <h2 className="restaurant-favorites-heading">Tus restaurantes favoritos</h2>
       {favoriteRestaurants.length > 0 && (
-        <div className="restaurant-list">
+        <div className="restaurant-favorites-list">
           {favoriteRestaurants.map((restaurant) => (
             <RestaurantCard
               key={restaurant.id}
@@ -44,8 +50,9 @@ const FavoritesView = () => {
           ))}
         </div>
       )}
+      <Footer />
     </div>
   );
 };
 
-export default FavoritesView;
+export default RestaurantFavorites;
