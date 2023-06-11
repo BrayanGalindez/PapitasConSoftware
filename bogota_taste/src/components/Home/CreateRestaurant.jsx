@@ -1,9 +1,13 @@
-import React, { useState} from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import '../../styles/CreateRestaurant.css'; // Ruta al archivo CSS
+import '../../styles/Home/CreateRestaurant.css'; // Ruta al archivo CSS
 
 import Modal from 'react-modal';
+import { AuthContext } from '../../AuthContext.js'; // Importa el contexto de autenticación
+
 const CreateRestaurant = ({ isOpen, onClose }) => {
+  const { authenticated } = useContext(AuthContext); // Accede al estado de autenticación del contexto
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
@@ -30,55 +34,44 @@ const CreateRestaurant = ({ isOpen, onClose }) => {
     setAddress(place.formatted_address);
   };
 
-//   useEffect(() => {
-//     const autoComplete = new window.google.maps.places.Autocomplete(
-//       document.getElementById('address-input')
-//     );
-
-//     autoComplete.addListener('place_changed', () => {
-//       const place = autoComplete.getPlace();
-//       handlePlaceSelect(place);
-//     });
-//   }, []);
-
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={isOpen && authenticated} // Verifica si el usuario está autenticado antes de mostrar el componente
       onRequestClose={onClose}
       className="crear-restaurante-modal"
       overlayClassName="crear-restaurante-overlay"
     >
-        <div className="container">
+      <div className="container">
         <h2>Añadir restaurante</h2>
         <form onSubmit={handleCreateRestaurant}>
-            <div>
+          <div>
             <label>Nombre:</label>
             <input
-                type="text"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
-            </div>
-            <div>
+          </div>
+          <div>
             <label>Descripción:</label>
             <input
-                type="text"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
+              type="text"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
             />
-            </div>
-            <div>
+          </div>
+          <div>
             <label>Dirección:</label>
             <input
-                type="text"
-                id="address-input"
-                value={address}
-                onChange={(event) => setAddress(event.target.value)}
+              type="text"
+              id="address-input"
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
             />
-            </div>
-            <button type="submit">Crear Restaurante</button>
+          </div>
+          <button type="submit">Crear Restaurante</button>
         </form>
-        </div>
+      </div>
     </Modal>
   );
 };
