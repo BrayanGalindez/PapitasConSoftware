@@ -83,4 +83,33 @@ async def login(user: loginModel):
             raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=401, detail="Correo o contraseñfdgsdga incorrectos")
+        raise HTTPException(status_code=401, detail="Error al conectar")
+    
+@router.put('/añadirFavoritos/{id}/{favorito}')
+async def insertUserFavorito(favorito: str, id: int):
+    try:
+        ids = coleccionUser.distinct("id")
+        user = coleccionUser.find_one({"id":id})
+        favoritos = user.get("favoritos",[])
+        if id not in ids:
+            raise HTTPException(status_code=404, detail="Usuario no encontrado")
+        elif favorito in favoritos:
+            raise HTTPException(status_code=400, detail="Restaurante ya en favoritos")
+        else:            
+            coleccionUser.find_one_and_update({"id": id}, {"$push": {"favoritos": favorito}})
+            return {"message": "Restaurante añadido a favoritos correctamente."}
+    except Exception as e:
+        print(e)
+
+@router.get('/{id}/favoritos')
+async def getFavoritos(id: int):
+    try:
+        ids = coleccionUser.distinct("id")
+        if id not in ids:
+            raise HTTPException(status_code=404, detail="Usuario no encontrado")
+        else:
+            user = coleccionUser.find_one({"id":id})
+            favoritos = user.get("favoritos",[])
+            return {"favoritos":favoritos}
+    except Exception as e:
+        print(e)

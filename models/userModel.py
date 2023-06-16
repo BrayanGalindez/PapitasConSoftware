@@ -12,3 +12,4 @@ class User(BaseModel):
     resAnadidos: int
     telefono: int
     tipo: str
+    favoritos: list[str]
