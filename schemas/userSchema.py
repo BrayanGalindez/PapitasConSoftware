@@ -9,7 +9,8 @@ def userEntity(item) -> dict:
         "comentarios":item["comentarios"],
         "resAnadidos":item["resAnadidos"],
         "telefono":item["telefono"],
-        "tipo":item["tipo"]
+        "tipo":item["tipo"],
+        "favoritos": list(item["favoritos"])
     }
 
 def usersEntity(entity) -> list:

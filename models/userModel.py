@@ -7,8 +7,9 @@ class User(BaseModel):
     apellido: str
     direccion:str
     correo: EmailStr
-    passw: bytes
+    passw: str
     comentarios: int
     resAnadidos: int
     telefono: int
     tipo: str
+    favoritos: list[str]

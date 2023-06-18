@@ -1,0 +1,16 @@
+.delete-restaurant {
+    text-align: center;
+  }
+  
+  .delete-restaurant-btn {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-restaurant-btn:hover {
+    background-color: #c82333;
+  }
