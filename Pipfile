@@ -7,6 +7,11 @@ name = "pypi"
 bcrypt = "*"
 pyjwt = "*"
 python-decouple = "*"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+pymongo = "*"
+pydantic = {extras = ["email"], version = "*"}
+passlib = "*"
 
 [dev-packages]
 
