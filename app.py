@@ -4,6 +4,7 @@ import rutas.propietarios
 import rutas.plato
 import rutas.resena
 import rutas.restaurante
+import rutas.maps
 
 
 
@@ -14,7 +15,7 @@ app.include_router(rutas.propietarios.router)
 app.include_router(rutas.restaurante.router)
 app.include_router(rutas.plato.router)
 app.include_router(rutas.resena.router)
-
+app.include_router(rutas.maps.router)
 
 
 from fastapi.middleware.cors import CORSMiddleware
