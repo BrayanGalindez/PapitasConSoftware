@@ -33,21 +33,28 @@ def imprimirUsuario(user: dict):
 
 @router.get('/{id}')
 async  def findOneUser(id:int):
-    usuario = userEntity(coleccionUser.find_one({"id": id}))
-    return imprimirUsuario(usuario)
-    
+    try:
+        usuario = userEntity(coleccionUser.find_one({"id": id}))
+        return imprimirUsuario(usuario)
+    except Exception as e:
+        print(e)
+        return {"error": "usuario no encontrado"}
 
 @router.post('/')
 async def insertOneUser(user:User):
-    usuarioNuevo = dict(user)
-    print(usuarioNuevo['passw'])
-    usuarioNuevo['passw'] = pwd_context.hash(usuarioNuevo['passw'])
-    #usuarioNuevo['passw'] = str(hashpw(bytes(usuarioNuevo['passw']),salt))
-
-    id = coleccionUser.insert_one(usuarioNuevo).inserted_id
-
-    user = coleccionUser.find_one({"_id": id})
-    return userEntity(user)
+    try:
+        usuarioNuevo = dict(user)
+        ids = coleccionUser.distinct("id")
+        if usuarioNuevo['id'] not in ids:
+            usuarioNuevo['passw'] = pwd_context.hash(usuarioNuevo['passw'])
+            id = coleccionUser.insert_one(usuarioNuevo).inserted_id
+            user = coleccionUser.find_one({"_id": id})
+            return userEntity(user)
+        else:
+            return {"mensaje": "Parece que este ID ya tiene una cuenta asociada."}
+    except Exception as e:
+        print(e)
+        return {"error": "Formato invalido"}
 
 @router.put('/{id}')
 async def updateUser(id: int, user: User):
@@ -69,12 +76,12 @@ def deleteUser(id: int):
     except:
         return f'Usuario no encontrado, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
 
-@router.post('/login')
-async def login(user: loginModel):
+@router.post('/login/{email}/{passw}')
+async def login(email: str, passw: str):
     try:
-        userNuevo = dict(user)
-        usuario = userEntity(coleccionUser.find_one({"correo": userNuevo['correo']}))
-        password = userNuevo['passw']
+        #userNuevo = dict(user)
+        usuario = userEntity(coleccionUser.find_one({"correo": email}))
+        password = passw
         hashed = usuario['passw']
         if pwd_context.verify(password, hashed):
             token = jwth.signJWT(usuario['id'])
@@ -83,7 +90,7 @@ async def login(user: loginModel):
             raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=401, detail="Error al conectar")
+        raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
     
 @router.put('/añadirFavoritos/{id}/{favorito}')
 async def insertUserFavorito(favorito: str, id: int):

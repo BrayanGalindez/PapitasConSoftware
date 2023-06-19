@@ -1,15 +1,14 @@
 from typing import Optional
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 class User(BaseModel):
-    id: Optional[int]
+    id: int
     nombre: str
-    apellido: str
-    direccion:str
     correo: EmailStr
     passw: str
-    comentarios: int
-    resAnadidos: int
-    telefono: int
-    tipo: str
-    favoritos: list[str]
+    direccion:Optional[str]
+    comentarios: Optional[int]
+    resAnadidos: Optional[int]
+    telefono: Optional[int]
+    tipo: Optional[str]
+    favoritos: list = Field(default_factory=list)
