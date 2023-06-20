@@ -8,10 +8,11 @@ import '../../styles/Home/SignUp.css';
 const SignUp = () => {
   // Estado para almacenar los valores de los campos del formulario
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    id: '',
+    nombre: '',
+    correo: '',
+    passw: '',
+//    confirmPassword: '',
   });
 
   // Manejador de cambios en los campos del formulario
@@ -24,7 +25,7 @@ const SignUp = () => {
     e.preventDefault();
     // Realizar la petición al backend utilizando Axios
     try {
-      const response = await axios.post('/api/signup', formData);
+      const response = await axios.post('http://127.0.0.1:8000/users', formData);
       // Manejar la respuesta del backend
       console.log(response.data);
       // Realizar cualquier otra acción necesaria
@@ -41,23 +42,34 @@ const SignUp = () => {
         <h2 className="signup-form-title">Crear cuenta</h2>
         <form onSubmit={handleSubmit}>
           <div className="signup-form-group">
-            <label htmlFor="name" className="signup-form-label">Nombre</label>
+            <label htmlFor="id" className="signup-form-label">No. Identificacion</label>
             <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              type="number"
+              id="id"
+              name="id"
+              value={formData.id}
               onChange={handleChange}
               className="signup-form-input"
             />
           </div>
           <div className="signup-form-group">
-            <label htmlFor="email" className="signup-form-label">Correo electrónico</label>
+            <label htmlFor="nombre" className="signup-form-label">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="correo" className="signup-form-label">Correo electrónico</label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="correo"
+              name="correo"
+              value={formData.correo}
               onChange={handleChange}
               className="signup-form-input"
             />
@@ -66,24 +78,14 @@ const SignUp = () => {
             <label htmlFor="password" className="signup-form-label">Contraseña</label>
             <input
               type="password"
-              id="password"
-              name="password"
-              value={formData.password}
+              id="passw"
+              name="passw"
+              value={formData.passw}
               onChange={handleChange}
               className="signup-form-input"
             />
           </div>
-          <div className="signup-form-group">
-            <label htmlFor="confirm-password" className="signup-form-label">Confirmar contraseña</label>
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="signup-form-input"
-            />
-          </div>
+          
           <button type="submit" className="signup-form-button">Crear cuenta</button>
         </form>
         <p className="signup-form-text">¿Ya tienes una cuenta? <Link to="/iniciar" className="signup-form-link">Inicia sesión aquí</Link></p>

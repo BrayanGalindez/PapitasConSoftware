@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Response
 from schemas.userSchema import userEntity, usersEntity
 from config.db import coleccionUser
+from pydantic import SecretStr
 from models.userModel import User
 from models.loginModel import loginModel
 from bcrypt import  hashpw, gensalt, checkpw
@@ -29,7 +30,7 @@ async def findAllUsers():
 
 
 def imprimirUsuario(user: dict):
-    return (f"Nombre: {user['nombre']}\nApellido: {user['apellido']}\nDireccion: {user['direccion']}\nCorreo: {user['correo']}\nComentarios: {user['comentarios']}\nRestaurantes añadidos: {user['resAnadidos']}\n Teléfono: {user['telefono']}")
+    return (f"Nombre: {user['nombre']}\nDireccion: {user['direccion']}\nCorreo: {user['correo']}\nComentarios: {user['comentarios']}\nRestaurantes añadidos: {user['resAnadidos']}\n Teléfono: {user['telefono']}")
 
 @router.get('/{id}')
 async  def findOneUser(id:int):
@@ -42,8 +43,11 @@ async  def findOneUser(id:int):
 
 @router.post('/')
 async def insertOneUser(user:User):
+    password = user.passw.get_secret_value()
+    print(password)
     try:
         usuarioNuevo = dict(user)
+        usuarioNuevo['passw'] = password
         ids = coleccionUser.distinct("id")
         if usuarioNuevo['id'] not in ids:
             usuarioNuevo['passw'] = pwd_context.hash(usuarioNuevo['passw'])
@@ -76,12 +80,12 @@ def deleteUser(id: int):
     except:
         return f'Usuario no encontrado, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
 
-@router.post('/login/{email}/{passw}')
-async def login(email: str, passw: str):
+@router.post('/login/')
+async def login(user: loginModel):
     try:
-        #userNuevo = dict(user)
-        usuario = userEntity(coleccionUser.find_one({"correo": email}))
-        password = passw
+        userNuevo = dict(user)
+        usuario = userEntity(coleccionUser.find_one({"correo": userNuevo['correo']}))
+        password = userNuevo['passw']
         hashed = usuario['passw']
         if pwd_context.verify(password, hashed):
             token = jwth.signJWT(usuario['id'])
