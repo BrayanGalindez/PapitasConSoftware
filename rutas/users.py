@@ -80,7 +80,7 @@ def deleteUser(id: int):
     except:
         return f'Usuario no encontrado, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
 
-@router.post('/login/')
+@router.post('/login')
 async def login(user: loginModel):
     try:
         userNuevo = dict(user)
@@ -89,7 +89,10 @@ async def login(user: loginModel):
         hashed = usuario['passw']
         if pwd_context.verify(password, hashed):
             token = jwth.signJWT(usuario['id'])
-            return {'token': token}
+            return {
+                'token': token,
+                'id': usuario['id']
+            }
         else:
             raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
     except Exception as e:

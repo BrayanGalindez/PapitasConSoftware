@@ -25,19 +25,20 @@ const SignIn = () => {
       console.log(response.data);
 
       const token = response.data.token;
+      const userId = response.data.id;
+      
 
       localStorage.setItem('token', token);
 
       handleAuth();
 
-      const userResponse = await axios.get('http://127.0.0.1:8000/users/me', {
+      const userResponse = await axios.get('http://127.0.0.1:8000/users/'+ userId, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      const userId = userResponse.data.id;
-      setUserId(userId);
+      
 
       navigate('/inicio');
     } catch (error) {
