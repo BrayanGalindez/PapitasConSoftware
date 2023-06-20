@@ -10,15 +10,28 @@ router = APIRouter(
 )
 
 
-@router.get('/')
-async def findAllRestaurantes():
-    restaurantes = restaurantesEntity(coleccionRestaurante.find())
-    return f'status: ok, datos: {restaurantes}'
+#@router.get('/')
+#async def findAllRestaurantes():
+ #   restaurantes = restaurantesEntity(coleccionRestaurante.find())
+  #  return f'status: ok, datos: {restaurantes}'
+
+
 
 
 @router.get('/{nit}')
 async def findOneRestaurante(nit: int):
     return restauranteEntity(coleccionRestaurante.find_one({"nit": nit}))
+
+
+#busqueda de restaurantes segun tags
+@router.get('/')
+async def buscar_restaurantes(palabra_clave: str):
+    try:
+        query = { '$text': { '$search': palabra_clave } }
+        resultados = restaurantesEntity(coleccionRestaurante.find(query))
+        return {'resultados': resultados}
+    except Exception as e:
+        return(e)
 
 
 @router.post('/')

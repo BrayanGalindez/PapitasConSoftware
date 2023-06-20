@@ -9,7 +9,12 @@ coleccionUser= db['users']
 coleccionUser.create_index("id", unique=True)
 
 coleccionProp = db['propietarios']
+coleccionProp.create_index("id", unique=True)
+
 coleccionPlato = db['platos']
 coleccionResena = db['resenas']
+
 coleccionRestaurante = db['restaurantes']
+coleccionRestaurante.create_index("nit", unique=True)
+coleccionRestaurante.create_index([('tags', 'text')])
 
