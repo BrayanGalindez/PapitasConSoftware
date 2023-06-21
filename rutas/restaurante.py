@@ -10,10 +10,10 @@ router = APIRouter(
 )
 
 
-#@router.get('/')
-#async def findAllRestaurantes():
- #   restaurantes = restaurantesEntity(coleccionRestaurante.find())
-  #  return f'status: ok, datos: {restaurantes}'
+@router.get('/all')
+async def findAllRestaurantes():
+    restaurantes = restaurantesEntity(coleccionRestaurante.find())
+    return f'status: ok, datos: {restaurantes}'
 
 
 
