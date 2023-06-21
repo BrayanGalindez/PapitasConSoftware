@@ -12,6 +12,8 @@ const SignUp = () => {
     nombre: '',
     correo: '',
     passw: '',
+    telefono: '',
+    direccion: '',
   });
 
   // Manejador de cambios en los campos del formulario
@@ -28,7 +30,7 @@ const SignUp = () => {
       // Manejar la respuesta del backend
       console.log(response.data);
       // Realizar cualquier otra acción necesaria
-      navigate('/inicio');
+      
     } catch (error) {
       // Manejar el error en caso de que ocurra
       console.log(error);
@@ -81,6 +83,28 @@ const SignUp = () => {
               id="passw"
               name="passw"
               value={formData.passw}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="telefono" className="signup-form-label">Teléfono</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="direccion" className="signup-form-label">Dirección</label>
+            <input
+              type="text"
+              id="direccion"
+              name="direccion"
+              value={formData.direccion}
               onChange={handleChange}
               className="signup-form-input"
             />

@@ -121,7 +121,7 @@ async def insertUserFavorito(favorito: str, id: int):
 @router.get('/{id}/favoritos')
 async def getFavoritos(id: int):
     try:
-        ids = coleccionUser.distinct("id")
+        ids = coleccionUser.distinct("id")#llama a todos los ids de la coleccion y lo almacena en una lista
         if id not in ids:
             raise HTTPException(status_code=404, detail="Usuario no encontrado")
         else:
