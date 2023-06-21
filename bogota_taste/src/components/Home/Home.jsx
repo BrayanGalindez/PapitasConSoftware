@@ -3,7 +3,7 @@ import '../../styles/Home/Home.css';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
 import Filter from './Filter.jsx';
-import RestaurantCardList from '../Restaurant/RestaurantPage';
+import RestaurantPage from '../Restaurant/RestaurantPage';
 import CreateRestaurant from './CreateRestaurant.jsx';
 
 const HomePage = () => {
@@ -24,8 +24,7 @@ const HomePage = () => {
       <div className='row'>
         <Filter />
         <div className='restaurants'>
-          <h1>Featured restaurants</h1>
-          <RestaurantCardList />
+          <RestaurantPage />
           {isLoggedIn && (
             <button className='floating-button' onClick={handleOpenCreateRestaurant}>
               +

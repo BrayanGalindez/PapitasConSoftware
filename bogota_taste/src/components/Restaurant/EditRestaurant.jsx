@@ -71,7 +71,9 @@ const EditRestaurant = ({ restaurantId }) => {
             onChange={(event) => setAddress(event.target.value)}
           />
         </div>
-        <button type="submit">Actualizar Restaurante</button>
+        <div class="edit-restaurant">
+          <button type="submit">Actualizar</button>
+        </div>
       </form>
       <DeleteRestaurant restaurantId={restaurantId} />
     </div>

@@ -22,23 +22,18 @@ const SignIn = () => {
         passw: password
       });
 
-      console.log(response.data);
-
       const token = response.data.token;
       const userId = response.data.id;
-      
 
       localStorage.setItem('token', token);
-
       handleAuth();
+      setUserId(userId); // Guardar el ID del usuario en el contexto de autenticación
 
-      const userResponse = await axios.get('http://127.0.0.1:8000/users/'+ userId, {
+      const userResponse = await axios.get('http://127.0.0.1:8000/users/'+userId, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-
-      
 
       navigate('/inicio');
     } catch (error) {
