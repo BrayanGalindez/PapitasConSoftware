@@ -59,7 +59,7 @@ const TopBar = ({ showSearch }) => {
                   Favoritos
                 </button>
               </Link>
-              <Link to="/cuenta">
+              <Link to="/cuenta/698562">
                 <button className="btn btn-outline btn-account">
                   Cuenta
                 </button>

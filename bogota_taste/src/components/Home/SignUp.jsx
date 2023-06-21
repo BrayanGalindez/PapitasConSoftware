@@ -12,7 +12,6 @@ const SignUp = () => {
     nombre: '',
     correo: '',
     passw: '',
-//    confirmPassword: '',
   });
 
   // Manejador de cambios en los campos del formulario
@@ -29,6 +28,7 @@ const SignUp = () => {
       // Manejar la respuesta del backend
       console.log(response.data);
       // Realizar cualquier otra acción necesaria
+      navigate('/inicio');
     } catch (error) {
       // Manejar el error en caso de que ocurra
       console.log(error);

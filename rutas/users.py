@@ -25,7 +25,7 @@ pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 @router.get('/')
 async def findAllUsers():
     usuarios = usersEntity(coleccionUser.find())
-    return f'status: ok, datos: {usuarios}'
+    return usuarios
 
 
 
@@ -36,7 +36,7 @@ def imprimirUsuario(user: dict):
 async  def findOneUser(id:int):
     try:
         usuario = userEntity(coleccionUser.find_one({"id": id}))
-        return imprimirUsuario(usuario)
+        return usuario
     except Exception as e:
         print(e)
         return {"error": "usuario no encontrado"}
@@ -62,13 +62,16 @@ async def insertOneUser(user:User):
 
 @router.put('/{id}')
 async def updateUser(id: int, user: User):
+    password = user.passw.get_secret_value()
     try:
         usuarioNuevo = dict(user)
         usuarioNuevo['id'] = id
-        usuarioNuevo['passw'] = str(hashpw(bytes(usuarioNuevo['passw']),salt))
+        usuarioNuevo['passw'] = password
+        usuarioNuevo['passw'] = pwd_context.hash(usuarioNuevo['passw'])
         coleccionUser.find_one_and_update({"id": id}, {"$set": dict(usuarioNuevo)})
         return Response(status_code=HTTP_201_CREATED)
-    except: 
+    except Exception as e:
+        print(e) 
         return f'Usuario no encontrado, error: {Response(status_code=HTTP_500_INTERNAL_SERVER_ERROR)}'
 
 @router.delete('/{id}')
@@ -123,7 +126,7 @@ async def getFavoritos(id: int):
             raise HTTPException(status_code=404, detail="Usuario no encontrado")
         else:
             user = coleccionUser.find_one({"id":id})
-            favoritos = user.get("favoritos",[])
-            return {"favoritos":favoritos}
+            favoritos = list(user.get("favoritos",[]))
+            return favoritos
     except Exception as e:
         print(e)

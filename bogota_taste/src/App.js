@@ -27,7 +27,7 @@ function App() {
             <Route path="editar" element={<EditRestaurant/>}/>
             <Route path="favoritos" element={<RestaurantFavorites/>}/>
             <Route path="reseña" element={<AddReviewView/>}/>
-            <Route path="cuenta" element={<UserAccount/>}/>
+            <Route path="cuenta/:id" element={<UserAccount/>}/>
             <Route path="barra" element={<TopBar/>}/>
           </Route>
         </Routes>
