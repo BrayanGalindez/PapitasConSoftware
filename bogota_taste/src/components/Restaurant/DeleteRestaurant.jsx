@@ -17,7 +17,7 @@ const DeleteRestaurant = ({ restaurantId }) => {
   return (
     <div className="delete-restaurant">
       <button className="delete-restaurant-btn" onClick={handleDeleteRestaurant}>
-        Eliminar Restaurante
+        Eliminar
       </button>
     </div>
   );
