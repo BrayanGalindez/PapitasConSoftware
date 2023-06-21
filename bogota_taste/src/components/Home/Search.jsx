@@ -6,9 +6,8 @@ function Search({ updateRestaurants }) {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get('URL_DE_TU_API', {
-        params: { query }
-      });
+      const response = await axios.get('http://127.0.0.1:8000/restaurantes/?palabra_clave='+ query );
+      console.log(response.data);
       updateRestaurants(response.data);
     } catch (error) {
       console.error(error);
