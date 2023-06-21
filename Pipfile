@@ -11,6 +11,8 @@ fastapi = "*"
 passlib = "*"
 pydantic = {extras = ["email"], version = "*"}
 pymongo = "*"
+boto3 = "*"
+python-multipart = "*"
 
 [dev-packages]
 
