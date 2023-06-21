@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Modal from "react-modal";
+// import '../../styles/Home/Search.css';
+
 
 const Search = () => {
   const [query, setQuery] = useState("");
