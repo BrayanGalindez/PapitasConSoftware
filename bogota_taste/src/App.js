@@ -25,7 +25,7 @@ function App() {
             <Route path="lista" element={<RestaurantCard/>}/>
             <Route path="eliminar" element={<DeleteRestaurant/>}/>
             <Route path="editar" element={<EditRestaurant/>}/>
-            <Route path="favoritos" element={<RestaurantFavorites/>}/>
+            <Route path="favoritos/:id" element={<RestaurantFavorites/>}/>
             <Route path="reseña" element={<AddReviewView/>}/>
             <Route path="cuenta/:id" element={<UserAccount/>}/>
             <Route path="barra" element={<TopBar/>}/>

@@ -6,6 +6,7 @@ import Search from "./Search";
 import logo from "../../utils/logo.jpg";
 
 const TopBar = ({ showSearch }) => {
+  const { userId } = useContext(AuthContext);
   const [query, setQuery] = useState("");
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
 
@@ -54,12 +55,12 @@ const TopBar = ({ showSearch }) => {
         <div className="botones">
           {isAuthenticated ? (
             <>
-              <Link to="/favoritos">
+              <Link to={`/favoritos/${userId}`}>
                 <button className="btn btn-outline btn-favorites">
                   Favoritos
                 </button>
               </Link>
-              <Link to="/cuenta/698562">
+              <Link to={`/cuenta/${userId}`}>
                 <button className="btn btn-outline btn-account">
                   Cuenta
                 </button>

@@ -22,7 +22,7 @@ const RestaurantFavorites = () => {
   const fetchFavoriteRestaurants = async () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/users/${userId}/favoritos`);
-      setFavoriteRestaurants(response.data.favoritos);
+      setFavoriteRestaurants(response.data);
     } catch (error) {
       console.error('Error fetching favorite restaurants:', error);
     }

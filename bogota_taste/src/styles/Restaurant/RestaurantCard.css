@@ -1,111 +1,50 @@
 .restaurant-card {
-    border: 1px solid gray;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .restaurant-card h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card p {
-    margin-bottom: 5px;
-  }
-  
-  .restaurant-card .price {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card .price img {
-    width: 20px;
-    margin-right: 5px;
-  }
-  
-  .restaurant-card .rating {
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card .rating span {
-    font-size: 20px;
-    margin-right: 5px;
-  }
-  
-  .restaurant-card .rating .star-empty {
-    color: gray;
-  }
-  
-  .restaurant-card .rating .star-filled {
-    color: orange;
-  }
-  
-  .restaurant-card .flavor {
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card .flavor span {
-    font-size: 20px;
-    margin-right: 5px;
-  }
-  
-  .restaurant-card .flavor .fork-empty {
-    color: gray;
-  }
-  
-  .restaurant-card .flavor .fork-filled {
-    color: green;
-  }
-  
-  .restaurant-card .photo-section {
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card .photo-section img {
-    width: 100px;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .restaurant-card .buttons {
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card .buttons button {
-    background-color: white;
-    border: 1px solid gray;
-    padding: 5px 10px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .restaurant-card .buttons button:hover {
-    background-color: gray;
-    color: white;
-  }
-  
-  .restaurant-card .favorite-button {
-    background-color: white;
-    border: 1px solid gray;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .restaurant-card .favorite-button:hover {
-    background-color: pink;
-    color: white;
-  }
-  
-  .restaurant-card .description {
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-card .contact {
-    font-size: 14px;
-    color: gray;
-  }
-  .map-container {
-    height: 300px;
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-card__image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.restaurant-card__name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.restaurant-card__description {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.restaurant-card__direccion {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.restaurant-card__button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.restaurant-card__button:hover {
+  background-color: #c0392b;
+}

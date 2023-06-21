@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
 
 class Restaurante(BaseModel):
     tags: list = Field(default_factory=list)
@@ -8,3 +9,4 @@ class Restaurante(BaseModel):
     correo: EmailStr
     telefono: int
     direccion: str
+    urlImg: Optional[str]

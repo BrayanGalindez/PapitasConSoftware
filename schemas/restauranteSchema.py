@@ -6,7 +6,8 @@ def restauranteEntity(item) -> dict:
         "propietario":item['propietario'],
         "correo":item['correo'],
         "telefono":item['telefono'],
-        "direccion":item['direccion']
+        "direccion":item['direccion'],
+        "urlImg": item['urlImg']
     }
 
 def restaurantesEntity(entity) -> list:

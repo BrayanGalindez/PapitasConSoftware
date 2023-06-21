@@ -28,7 +28,7 @@ async def buscar_restaurantes(palabra_clave: str):
     try:
         query = { '$text': { '$search': palabra_clave } }
         resultados = restaurantesEntity(coleccionRestaurante.find(query))
-        return {'resultados': resultados}
+        return resultados
     except Exception as e:
         return(e)
 
