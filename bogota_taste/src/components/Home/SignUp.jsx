@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
@@ -15,6 +15,8 @@ const SignUp = () => {
     telefono: '',
     direccion: '',
   });
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   // Manejador de cambios en los campos del formulario
   const handleChange = (e) => {
@@ -31,9 +33,14 @@ const SignUp = () => {
       console.log(response.data);
       // Realizar cualquier otra acción necesaria
       
+      navigate('/iniciar');
     } catch (error) {
-      // Manejar el error en caso de que ocurra
-      console.log(error);
+      if (error.response && error.response.data && error.response.data.detail) {
+        setError(error.response.data.detail);
+      } else {
+        setError('A server error has occurred.');
+        console.log(error);
+      }
     }
   };
 
