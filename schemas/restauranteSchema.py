@@ -10,5 +10,6 @@ def restauranteEntity(item) -> dict:
         "urlImg": item['urlImg']
     }
 
+
 def restaurantesEntity(entity) -> list:
     return [restauranteEntity(item) for item in entity]
