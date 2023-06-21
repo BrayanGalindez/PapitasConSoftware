@@ -5,6 +5,7 @@ import TopBar from '../Home/TopBar';
 import Footer from '../Home/Footer';
 import UserData from '../User/UserData';
 
+
 const UserAccount = ({ userId }) => {
   const [userData, setUserData] = useState(null);
 
