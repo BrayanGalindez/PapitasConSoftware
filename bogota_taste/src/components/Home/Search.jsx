@@ -39,9 +39,9 @@ const Search = () => {
 
   return (
     <div className="search">
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={keyword} onChange={handleKeywordChange} />
-        <button type="submit">Buscar</button>
+      <form className="search-form" onSubmit={handleSubmit}>
+        <input className="search-input" type="text" value={keyword} onChange={handleKeywordChange} />
+        <button className="search-button" type="submit">Buscar</button>
       </form>
 
       <Modal isOpen={modalOpen} onRequestClose={closeModal} className="modal">
