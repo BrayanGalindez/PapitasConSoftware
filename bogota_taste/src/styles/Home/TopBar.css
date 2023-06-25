@@ -12,26 +12,29 @@
   height: auto;
   margin-right: 0.5rem;
 }
+
 .logo img {
   width: 50px;
   height: auto;
   margin-right: 0.5rem; /* Ajusta el margen derecho según tus necesidades */
 }
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
 .searchbar {
   flex: 1; /* Ocupa todo el espacio disponible */
   max-width: none; /* Elimina el límite máximo de ancho */
   margin-right: 0.5rem; /* Ajusta el margen derecho según tus necesidades */
   margin-left: 3.5rem; /* Ajusta el margen derecho según tus necesidades */
 }
-.topbar .search input[type="text"] {
-  margin-bottom: 0; /* Elimina el margin-bottom */
-}
 .topbar .search {
-  display: flex;
   align-items: center;
 }
 
-.topbar .search input {
+.search-input {
   flex: 1;
   padding: 0.5rem;
   border-radius: 0.25rem;
@@ -42,7 +45,7 @@
   max-width: 400px;
 }
 
-.topbar .search button {
+.search-button {
   padding: 0.5rem 1rem;
   background-color: #e78284;
   color: white;
@@ -52,15 +55,15 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.topbar .search button:hover {
+.search-button:hover {
   background-color: #ca6264;
 }
 
-.topbar .search input::placeholder {
+.search-input::placeholder {
   color: #aaa;
 }
 
-.topbar .search input:focus {
+.search-input:focus {
   outline: none;
   border-color: #e78284;
   box-shadow: 0 0 0 2px rgba(231, 130, 132, 0.4);
@@ -157,6 +160,7 @@
 }
 
 .modal-close-btn,
+
 .modal-footer button {
   padding: 10px 20px;
   border-radius: 5px;
