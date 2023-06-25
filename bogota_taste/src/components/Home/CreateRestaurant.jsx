@@ -37,9 +37,9 @@ const CreateRestaurant = ({ isOpen, onClose }) => {
     }
   };
 
-  const handlePlaceSelect = (place) => {
-    setAddress(place.formatted_address);
-  };
+  // const handlePlaceSelect = (place) => {
+  //   setAddress(place.formatted_address);
+  // };
   const handlePhotoChange = (event) => {
     const files = Array.from(event.target.files);
     const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']; // Permite los tipos de archivos seleccionados
@@ -84,21 +84,23 @@ const CreateRestaurant = ({ isOpen, onClose }) => {
       className="crear-restaurante-modal"
       overlayClassName="crear-restaurante-overlay"
     >
-      <div className="container">
-        <h2>Añadir restaurante</h2>
-        <form onSubmit={handleCreateRestaurant}>
+      <div className="create-restaurant-container">
+        <h2 className="create-restaurant-title">Añadir restaurante</h2>
+        <form className="create-restaurant-form" onSubmit={handleCreateRestaurant}>
           <div>
-            <label>Nombre:</label>
+            <label className="create-restaurant-label">Nombre:</label>
             <input
+              className="create-restaurant-input"
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div>
-            <label>Fotos:</label>
+            <label className="create-restaurant-label" >Fotos:</label>
             <div >
               <input
+              className="create-restaurant-input"
               type="file"
               id="photos"
               multiple
@@ -110,15 +112,16 @@ const CreateRestaurant = ({ isOpen, onClose }) => {
             <div id="preview-container"></div>
           </div>
           <div>
-            <label>Dirección:</label>
+            <label className="create-restaurant-label" >Dirección:</label>
             <input
+              className="create-restaurant-input"
               type="text"
               id="address-input"
               value={address}
               onChange={(event) => setAddress(event.target.value)}
             />
           </div>
-          <button type="submit">Crear Restaurante</button>
+          <button className="create-restaurant-button" type="submit">Crear Restaurante</button>
         </form>
       </div>
     </Modal>
