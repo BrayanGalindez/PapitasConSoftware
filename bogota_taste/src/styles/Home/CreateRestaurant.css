@@ -1,4 +1,4 @@
-.container {
+.create-restaurant-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -34,23 +34,23 @@
   justify-content: center;
 }
 
-h2 {
+.create-restaurant-title {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-form {
+.create-restaurant-form{
   /* display: flex; */
   flex-direction: column;
   width: 100%;
 }
 
-label {
+.create-restaurant-nombre {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-input[type="text"] {
+.create-restaurant-input[type="text"] {
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -59,20 +59,21 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
-button[type="submit"] {
+.create-restaurant-button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 0 auto; 
 }
 
-button[type="submit"]:hover {
+.create-restaurant-button:hover {
   background-color: #0056b3;
 }
 
-input[type="file"] {
+.create-restaurant-input {
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -83,15 +84,15 @@ input[type="file"] {
   color: #555;
 }
 
-input[type="file"]:hover {
+.create-restaurant-input:hover {
   background-color: #e0e0e0;
 }
 
-input[type="file"]::placeholder {
+.create-restaurant-input::placeholder {
   color: #999;
 }
 
-input[type="file"]::-webkit-file-upload-button {
+.create-restaurant-input::-webkit-file-upload-button {
   background-color: #007bff;
   color: #fff;
   padding: 8px 16px;
@@ -100,7 +101,7 @@ input[type="file"]::-webkit-file-upload-button {
   cursor: pointer;
 }
 
-input[type="file"]::-webkit-file-upload-button:hover {
+.create-restaurant-input::-webkit-file-upload-button:hover {
   background-color: #0056b3;
 }
 
