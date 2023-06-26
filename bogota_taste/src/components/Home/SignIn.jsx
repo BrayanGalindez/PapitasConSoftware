@@ -8,7 +8,7 @@ import Footer from './Footer.jsx';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { handleAuth, setUserId } = useContext(AuthContext);
+  const { handleAuth , setToken ,setUserId} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -25,9 +25,9 @@ const SignIn = () => {
       const token = response.data.token;
       const userId = response.data.id;
 
-      localStorage.setItem('token', token);
       handleAuth();
-      setUserId(userId); // Guardar el ID del usuario en el contexto de autenticación
+      setToken(token);
+      setUserId(userId);
 
       const userResponse = await axios.get('http://127.0.0.1:8000/users/'+userId, {
         headers: {
