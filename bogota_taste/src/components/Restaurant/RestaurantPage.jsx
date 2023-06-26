@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import axios from 'axios';
+import Modal from 'react-modal'; // Importa el componente Modal de react-modal
 import '../../styles/Restaurant/RestaurantPage.css';
 import RestaurantCard from './RestaurantCard';
+import { AuthContext } from '../../AuthContext.js'; // Importa el contexto de autenticación
+
+Modal.setAppElement('#root'); // Asegura que el elemento de la aplicación principal esté definido
 
 const RestaurantPage = () => {
-  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const [restaurants, setRestaurants] = useState([]);
+const { restaurants, updateRestaurants } = useContext(AuthContext); // Obtén las propiedades restaurants y updateRestaurants del contexto
+const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
-  const handleViewMore = (restaurant) => {
-    setSelectedRestaurant(restaurant);
+const handleViewMore = (restaurant) => {
+  setSelectedRestaurant(restaurant);
+};
+useEffect(() => {
+  const fetchRestaurants = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/restaurantes/all');
+      const data = response.data;
+      if (Array.isArray(data.restaurantes)) {
+        updateRestaurants(data.restaurantes); // Actualiza la lista de restaurantes en el contexto
+      }
+    } catch (error) {
+      console.error('Error al obtener los restaurantes:', error);
+    }
   };
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/restaurantes/all');
-        const data = response.data;
-
-        if (Array.isArray(data.restaurantes)) {
-          setRestaurants(data.restaurantes);
-        }
-      } catch (error) {
-        console.error('Error al obtener los restaurantes:', error);
-      }
-    };
-
-    fetchRestaurants();
-  }, []);
+  fetchRestaurants();
+}, [updateRestaurants]);
 
   return (
     <div>
@@ -37,10 +39,11 @@ const RestaurantPage = () => {
             <RestaurantCard
               key={restaurant.nit}
               name={restaurant.nombre}
-              image={restaurant.image}
+              image={restaurant.urlImg}
               description={restaurant.description}
               direccion={restaurant.direccion}
               onViewMore={() => handleViewMore(restaurant)}
+              updateRestaurants={updateRestaurants} // Pasa la función updateRestaurants al componente RestaurantCard
             />
           ))}
       </div>
