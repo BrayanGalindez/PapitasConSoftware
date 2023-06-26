@@ -40,13 +40,14 @@ async def uploadFile(file: UploadFile = File(...)):
         }
     )
     return {'url': url}
-#creacion de nuevo restaurante
+# creacion de nuevo restaurante
 @router.post('/')
 async def insertOneRestaurante(restaurante: Restaurante): 
     restauranteNuevo = dict(restaurante)
     id = coleccionRestaurante.insert_one(restauranteNuevo).inserted_id
     restaurante = coleccionRestaurante.find_one({"_id": id})
     return restauranteEntity(restaurante)
+
 
 
 @router.get('/all')
