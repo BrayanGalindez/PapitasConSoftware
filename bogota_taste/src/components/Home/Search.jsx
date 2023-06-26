@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 
 const Search = () => {
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
