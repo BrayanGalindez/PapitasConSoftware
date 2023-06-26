@@ -1,29 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../../styles/User/UserData.css';
 import RestaurantUser from './RestaurantUser';
+import EditUserData from  './EditUserData';
+import { AuthContext } from '../../AuthContext';
 
 const UserData = ({ data }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [passw, setPassw] = useState('');
+  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
-  const [userId, setUserId] = useState('');
-
+  const [phone, setPhone] = useState('');
+  const { storedUserId  } = useContext(AuthContext);
+  
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/users/${userId}`);
-        setName(response.data.name);
-        setLastName(response.data.lastName);
-        setEmail(response.data.email);
+        const response = await axios.get(`http://127.0.0.1:8000/users/${storedUserId}`);
+        setName(response.data.nombre);
+        setPassw(response.data.passw);
+        setAddress(response.data.direccion);
+        setEmail(response.data.correo);
+        setPhone(response.data.telefono);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
   
     fetchUserData();
-  }, [userId]);
+  }, [storedUserId ]);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -37,10 +44,12 @@ const UserData = ({ data }) => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://127.0.0.1:8000/users/${data.id}`, {
-        name,
-        lastName,
-        email,
+      await axios.put(`http://127.0.0.1:8000/users/${storedUserId }`, {
+        nombre: name,
+        passw: passw ,
+        direccion: address,
+        correo: email,
+        telefono: phone
       });
       setIsEditing(false);
     } catch (error) {
@@ -51,45 +60,35 @@ const UserData = ({ data }) => {
   return (
     <div>
       {isEditing ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label>
-            Last Name:
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <button type="submit">Update</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
-        </form>
+        <EditUserData
+        name={name}
+        passw={passw}
+        address={address}
+        email={email}
+        phone={phone}
+        setName={setName}
+        setAddress={setAddress}
+        setEmail={setEmail}
+        setPhone={setPhone}
+        handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
+        />
       ) : (
-        <div>
-          <p>Name: {name}</p>
-          <p>Last Name: {lastName}</p>
-          <p>Email: {email}</p>
-          <button onClick={handleEdit}>Edit</button>
+        <div className='profile-container'>
+          <div className='profile-card'>    
+            <h2 className='profile-title'>Perfil de Usuario</h2>
+            <p className='profile-item'>Nombre: {name}</p>
+            {/* <p className='profile-item'>Contraseña: {passw}</p> */}
+            <p className='profile-item'>Direccion: {address}</p>
+            <p className='profile-item'>Correo: {email}</p>
+            <p className='profile-item'>Telefono: {phone}</p>
+            <button className='profile-button' onClick={handleEdit}>Editar</button>
+          </div>
         </div>
       )}
       {data && data.restaurants && (
         <div>
-          <h3>Added Restaurants:</h3>
+          <h3>Añadir restaurantes:</h3>
           <ul>
             {data.restaurants.map((restaurant) => (
               <RestaurantUser key={restaurant.id} restaurant={restaurant} />
