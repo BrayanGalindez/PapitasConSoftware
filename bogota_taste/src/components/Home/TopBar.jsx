@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../AuthContext";
 import Search from "./Search";
@@ -9,6 +9,7 @@ const TopBar = ({ showSearch }) => {
   const { userId } = useContext(AuthContext);
   const [query, setQuery] = useState("");
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
+  const navigate = useNavigate (); // Obtener la instancia de history
 
   const handleSearch = async () => {
     try {
@@ -31,6 +32,10 @@ const TopBar = ({ showSearch }) => {
     if (e.key === "Enter") {
       handleSearch();
     }
+  };
+  const handleLogoutAndRedirect = () => {
+    handleLogout();
+    navigate("/inicio"); // Redirigir a la página principal ("/")
   };
 
   return (
@@ -65,7 +70,7 @@ const TopBar = ({ showSearch }) => {
                   Cuenta
                 </button>
               </Link>
-              <button className="btn btn-contained" onClick={handleLogout}>
+              <button className="btn btn-contained" onClick={handleLogoutAndRedirect}>
                 Cerrar sesión
               </button>
             </>
