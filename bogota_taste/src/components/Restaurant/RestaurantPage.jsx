@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from 'react-modal'; // Importa el componente Modal de react-modal
 import '../../styles/Restaurant/RestaurantPage.css';
 import RestaurantCard from './RestaurantCard';
+import RestaurantCardDetails from './RestaurantCardDetails';
 import { AuthContext } from '../../AuthContext.js'; // Importa el contexto de autenticación
 
 Modal.setAppElement('#root'); // Asegura que el elemento de la aplicación principal esté definido
@@ -13,6 +14,9 @@ const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
 const handleViewMore = (restaurant) => {
   setSelectedRestaurant(restaurant);
+};
+const handleCloseDetails = () => {
+  setSelectedRestaurant(null);
 };
 useEffect(() => {
   const fetchRestaurants = async () => {
@@ -48,12 +52,10 @@ useEffect(() => {
           ))}
       </div>
       {selectedRestaurant && (
-        <div className="restaurant-details">
-          {/* Mostrar información completa del restaurante */}
-          <h2>{selectedRestaurant.nombre}</h2>
-          <p>{selectedRestaurant.description}</p>
-          {/* ... otras opciones y funcionalidades */}
-        </div>
+        <RestaurantCardDetails
+          restaurant={selectedRestaurant}
+          onClose={handleCloseDetails}
+        />
       )}
     </div>
   );
