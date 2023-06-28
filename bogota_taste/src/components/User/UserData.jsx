@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import {useNavigate  } from "react-router-dom";
 import '../../styles/User/UserData.css';
-import RestaurantUser from './RestaurantUser';
-import EditUserData from  './EditUserData';
+import RestaurantUser from './RestaurantUser.jsx';
+import EditUserData from  './EditUserData.jsx';
 import { AuthContext } from '../../AuthContext';
+import DeleteAccountModal from './DeleteAccountModal';
 
 const UserData = ({ data }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,7 +14,9 @@ const UserData = ({ data }) => {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const { storedUserId  } = useContext(AuthContext);
+  const { storedUserId, handleLogout  } = useContext(AuthContext);
+  const navigate = useNavigate (); // Obtener la instancia de history
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   
   
   useEffect(() => {
@@ -56,6 +60,28 @@ const UserData = ({ data }) => {
       console.error('Error updating user data:', error);
     }
   };
+  const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/users/${storedUserId}`);
+      handleLogoutAndRedirect();
+    } catch (error) {
+      console.error('Error deleting user account:', error);
+    }
+    setShowDeleteModal(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteModal(false);
+  };
+
+  const handleLogoutAndRedirect = () => {
+    handleLogout();
+    navigate('/inicio'); // Redirigir a la página principal ("/inicio")
+  };
 
   return (
     <div>
@@ -82,7 +108,14 @@ const UserData = ({ data }) => {
             <p className='profile-item'>Direccion: {address}</p>
             <p className='profile-item'>Correo: {email}</p>
             <p className='profile-item'>Telefono: {phone}</p>
-            <button className='profile-button' onClick={handleEdit}>Editar</button>
+            <button className='profile-button-edit' onClick={handleEdit}>Editar</button>
+            <button className='profile-button-delete' onClick={handleDelete}>Eliminar</button>
+            {showDeleteModal && (
+              <DeleteAccountModal
+                handleConfirmDelete={handleConfirmDelete}
+                handleCancelDelete={handleCancelDelete}
+              />
+            )}
           </div>
         </div>
       )}
