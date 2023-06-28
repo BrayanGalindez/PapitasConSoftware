@@ -14,41 +14,4 @@ const RestaurantCard = ({ name, image, description, direccion, onViewMore, updat
 };
 
 export default RestaurantCard;
-// import React from 'react';
-// import axios from 'axios';
 
-// const RestaurantCard = ({
-//   name,
-//   image,
-//   description,
-//   direccion,
-//   onViewMore,
-//   updateRestaurants // Recibe la función updateRestaurants como prop
-// }) => {
-//   const handleDeleteRestaurant = async () => {
-//     try {
-//       await axios.delete(`http://localhost:8000/restaurantes/${name}`);
-//       updateRestaurants(); // Actualiza la lista de restaurantes después de eliminar un restaurante
-//     } catch (error) {
-//       console.error('Error deleting restaurant:', error);
-//     }
-//   };
-
-//   const handleEditRestaurant = async () => {
-//     // Lógica para editar un restaurante
-//   };
-
-//   return (
-//     <div className="restaurant-card">
-//       <img src={image} alt={name} />
-//       <h3>{name}</h3>
-//       <p>{description}</p>
-//       <p>{direccion}</p>
-//       <button onClick={onViewMore}>Ver más</button>
-//       <button onClick={handleDeleteRestaurant}>Eliminar</button>
-//       <button onClick={handleEditRestaurant}>Editar</button>
-//     </div>
-//   );
-// };
-
-// export default RestaurantCard;
