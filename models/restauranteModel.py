@@ -5,8 +5,8 @@ class Restaurante(BaseModel):
     tags: list = Field(default_factory=list)
     nit: int
     nombre: str
-    propietario: str
-    correo: EmailStr
-    telefono: int
+    propietario: Optional[str]
+    correo: Optional[EmailStr]
+    telefono: Optional[int]
     direccion: str
-    urlImg: Optional['str']  
+    urlImg: Optional[str]

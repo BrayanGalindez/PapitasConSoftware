@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
@@ -12,8 +12,11 @@ const SignUp = () => {
     nombre: '',
     correo: '',
     passw: '',
-//    confirmPassword: '',
+    telefono: '',
+    direccion: '',
   });
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   // Manejador de cambios en los campos del formulario
   const handleChange = (e) => {
@@ -29,9 +32,15 @@ const SignUp = () => {
       // Manejar la respuesta del backend
       console.log(response.data);
       // Realizar cualquier otra acción necesaria
+      
+      navigate('/iniciar');
     } catch (error) {
-      // Manejar el error en caso de que ocurra
-      console.log(error);
+      if (error.response && error.response.data && error.response.data.detail) {
+        setError(error.response.data.detail);
+      } else {
+        setError('A server error has occurred.');
+        console.log(error);
+      }
     }
   };
 
@@ -81,6 +90,28 @@ const SignUp = () => {
               id="passw"
               name="passw"
               value={formData.passw}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="telefono" className="signup-form-label">Teléfono</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+              className="signup-form-input"
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="direccion" className="signup-form-label">Dirección</label>
+            <input
+              type="text"
+              id="direccion"
+              name="direccion"
+              value={formData.direccion}
               onChange={handleChange}
               className="signup-form-input"
             />

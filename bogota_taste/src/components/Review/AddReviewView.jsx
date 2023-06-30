@@ -87,14 +87,14 @@ const AddReviewView = ({ restaurantId, onClose, onAddReview }) => {
           </div>
           <div className="form-group">
             <label>Fotos:</label>
-            <div className="file-input-wrapper">
+            <div className="file-input-wrapper file-input-wrapper-reseña">
               <input
               type="file"
               id="photos"
               multiple
               accept="image/png, image/jpeg, image/jpg"
               onChange={handlePhotoChange}
-              className="file-input file-input-custom"
+              
               />
             </div >
             <div id="preview-container"></div>

@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-contact">
           <div className="footer-contact-item">
             <FaEnvelope className="footer-icon" />
-            <span>example@example.com</span>
+            <span>papitas@gmail.com</span>
           </div>
           <div className="footer-contact-item">
             <FaPhone className="footer-icon" />

@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# PapitasConSoftware
+=======
 
 # Papitas con Software
 
@@ -28,3 +31,4 @@
 	`uvicorn app:app --reload`
 
 Listo, luego de seguir estos pasos, deberias tener funcionando de forma correcta el proyecto de FastApi.
+>>>>>>> origin/Develop_Frontend

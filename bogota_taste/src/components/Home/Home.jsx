@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState, useContext  } from 'react';
 import '../../styles/Home/Home.css';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
 import Filter from './Filter.jsx';
-import RestaurantCardList from '../Restaurant/RestaurantPage';
+import RestaurantPage from '../Restaurant/RestaurantPage';
 import CreateRestaurant from './CreateRestaurant.jsx';
+import { AuthContext } from '../../AuthContext.js'; 
 
 const HomePage = () => {
+  const { isAuthenticated } = useContext(AuthContext)
   const [showCreateRestaurant, setShowCreateRestaurant] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenCreateRestaurant = () => {
     setShowCreateRestaurant(true);
@@ -24,13 +25,13 @@ const HomePage = () => {
       <div className='row'>
         <Filter />
         <div className='restaurants'>
-          <h1>Featured restaurants</h1>
-          <RestaurantCardList />
-          {isLoggedIn && (
+          <RestaurantPage />
+          {isAuthenticated && (
             <button className='floating-button' onClick={handleOpenCreateRestaurant}>
               +
             </button>
           )}
+          
         </div>
       </div>
       <Footer />
