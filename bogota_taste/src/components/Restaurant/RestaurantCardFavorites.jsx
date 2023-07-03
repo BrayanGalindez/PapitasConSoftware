@@ -1,14 +1,14 @@
 import React from 'react';
-import '../../styles/Restaurant/RestaurantCard.css';
+import '../../styles/Restaurant/RestaurantCardFavorites.css';
 
 const RestaurantCardFavorites = ({ name, image, description, direccion, onViewMore, updateRestaurants  }) => {
   return (
-    <div className="restaurant-card">
-      <img className='restaurant-card__image' src={image} alt={name} />
-      <h3 className='restaurant-card__name'>{name}</h3>
-      <p className='restaurant-card__description'>{description}</p>
-      <h3 className='restaurant-card__direccion'>{direccion}</h3>
-      <button className='restaurant-card__button' onClick={onViewMore}>Ver más</button>
+    <div className="restaurant-card-favorites">
+      {/* <img className='restaurant-card-favorites-image' src={image} alt={name} /> */}
+      <h3 className='restaurant-card-favorites-name'>{name}</h3>
+      <p className='restaurant-card-favorites-description'>{description}</p>
+      <h3 className='restaurant-card-favorites-direccion'>{direccion}</h3>
+      <button className='restaurant-card-favorites-button' onClick={onViewMore}>Ver más</button>
     </div>
   );
 };
