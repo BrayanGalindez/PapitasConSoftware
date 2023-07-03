@@ -10,7 +10,7 @@
   margin-bottom: 20px; /* Agrega espacio entre las filas */
 }
 
-.restaurant-card__image {
+.restaurant-card-image {
   width: 200px;
   height: 200px;
   object-fit: contain;
@@ -18,26 +18,32 @@
   margin-bottom: 10px;
 }
 
-.restaurant-card__name {
+.restaurant-card-name {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 5px;
   color: #333;
 }
 
-.restaurant-card__description {
+.restaurant-card-description {
   font-size: 16px;
   margin-bottom: 10px;
   color: #777;
 }
 
-.restaurant-card__direccion {
+.restaurant-card-direccion {
   font-size: 18px;
   margin-bottom: 10px;
   color: #555;
 }
 
-.restaurant-card__button {
+.restaurant-card-buttons {
+  display: flex;
+  flex-direction: column; /* Agregado */
+  gap: 10px; /* Agregado para separar los botones */
+}
+
+.restaurant-card-button-more {
   background-color: #e74c3c;
   color: #fff;
   border: none;
@@ -45,8 +51,24 @@
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  margin-bottom: 10px; /* Agregado */
 }
 
-.restaurant-card__button:hover {
+.restaurant-card-button-more:hover {
   background-color: #c0392b;
+}
+
+.restaurant-card-button-favorite {
+  background-color: #ffd700;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block; /* Agregado */
+}
+
+.restaurant-card-button-favorite:hover {
+  background-color: #b8860b;
 }
