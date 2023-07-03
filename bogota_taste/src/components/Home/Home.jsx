@@ -2,7 +2,7 @@ import React, {useState, useContext  } from 'react';
 import '../../styles/Home/Home.css';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
-import Filter from './Filter.jsx';
+// import Filter from './Filter.jsx';
 import RestaurantPage from '../Restaurant/RestaurantPage';
 import CreateRestaurant from './CreateRestaurant.jsx';
 import { AuthContext } from '../../AuthContext.js'; 
@@ -23,7 +23,7 @@ const HomePage = () => {
     <div className='home-page'>
       <TopBar showSearch={true} />
       <div className='row'>
-        <Filter />
+        {/* <Filter /> */}
         <div className='restaurants'>
           <RestaurantPage />
           {isAuthenticated && (
