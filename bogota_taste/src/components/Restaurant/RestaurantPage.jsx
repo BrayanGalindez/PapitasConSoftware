@@ -9,7 +9,7 @@ import { AuthContext } from '../../AuthContext.js'; // Importa el contexto de au
 Modal.setAppElement('#root'); // Asegura que el elemento de la aplicación principal esté definido
 
 const RestaurantPage = () => {
-const { restaurants, updateRestaurants } = useContext(AuthContext); // Obtén las propiedades restaurants y updateRestaurants del contexto
+const { storedUserId, restaurants, updateRestaurants } = useContext(AuthContext); // Obtén las propiedades restaurants y updateRestaurants del contexto
 const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
 const handleViewMore = (restaurant) => {
@@ -18,6 +18,16 @@ const handleViewMore = (restaurant) => {
 const handleCloseDetails = () => {
   setSelectedRestaurant(null);
 };
+const addFavoriteRestaurant = async (restaurantName) => {
+  try {
+    const encodedRestaurantName = encodeURIComponent(restaurantName);
+    const response = await axios.put(`http://localhost:8000/users/añadirFavoritos/${storedUserId}/${encodedRestaurantName}`);
+    console.log('Restaurante agregado a favoritos:', response.data);
+  } catch (error) {
+    console.error('Error al agregar el restaurante a favoritos:', error);
+  }
+};
+
 useEffect(() => {
   const fetchRestaurants = async () => {
     try {
@@ -30,7 +40,6 @@ useEffect(() => {
       console.error('Error al obtener los restaurantes:', error);
     }
   };
-
   fetchRestaurants();
 }, [updateRestaurants]);
 
@@ -47,6 +56,7 @@ useEffect(() => {
               description={restaurant.description}
               direccion={restaurant.direccion}
               onViewMore={() => handleViewMore(restaurant)}
+              onAddFavorite={() => addFavoriteRestaurant(restaurant.nombre)} // Llama a addFavoriteRestaurant con el ID del restaurante y el nombre
               updateRestaurants={updateRestaurants} // Pasa la función updateRestaurants al componente RestaurantCard
             />
           ))}
